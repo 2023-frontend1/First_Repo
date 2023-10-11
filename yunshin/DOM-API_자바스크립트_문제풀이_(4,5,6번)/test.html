@@ -31,6 +31,13 @@
       #list {
         border: 1px solid #ededed;
       }
+
+      p{
+        display: flex;
+        justify-content: start;
+        gap: 10px;
+      }
+    
     </style>
   </head>
   <body>
@@ -51,8 +58,20 @@
         <button type="reset">초기화</button>
         <p>리스트</p>
         <ul id="list">
-          <li class="liclass">list</li>
-          <li class="liclass">list</li>
+          <li class="liclass">
+            <p>
+              list
+              <button type="button" id="edit">수정</button>
+              <button type="button" id="delete">삭제</button>
+            </p>
+          </li>
+          <li class="liclass"> 
+            <p>
+              list
+              <button type="button" id="edit">수정</button>
+              <button type="button" id="delete">삭제</button>
+            </p>
+          </li>
         </ul>
       </form>
     </div>
