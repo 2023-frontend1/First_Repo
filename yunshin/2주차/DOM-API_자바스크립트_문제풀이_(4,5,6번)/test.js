@@ -14,7 +14,7 @@ $첫번째_input.addEventListener('change', (e) => {
 const $두번째_input = document.querySelector('#list_data')
 const $id가_list인_ul = document.querySelector('#list')
 const $저장_button = document.querySelector('#send')
-const $초기화_button = document.querySelector('[type=]')
+const $초기화_button = document.querySelector('button[type=reset]')
 
 // 1. 엔터를 누른 경우
 $두번째_input.addEventListener('keypress', (e) => {
@@ -57,7 +57,7 @@ const 새로운_리스트_요소_만들기 = (적을내용) => {
 
   const $new_삭제_button = document.createElement('button')
   $new_삭제_button.type = 'button'
-  $new_수정_button.classList.add('delete_btn')
+  $new_삭제_button.classList.add('delete_btn')
   $new_삭제_button.innerHTML = '삭제'
 
   $new_p.appendChild($new_수정_button)
@@ -69,3 +69,25 @@ const 새로운_리스트_요소_만들기 = (적을내용) => {
 }
 
 /* [6] */
+/**
+ * 주의!
+ *
+ * 동적으로 요소를 추가한 경우, querySelector 로 직접 접근불가
+ * 정적인 상위 부모 요소로부터 원하는 요소로 접근해야한다.
+ *
+ * => 이벤트 위임
+ */
+
+$id가_list인_ul.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete_btn')) {
+    const 삭제_버튼_모임 = Array.from(
+      $id가_list인_ul.querySelectorAll('.delete_btn')
+    )
+    const 지워야할_요소의_idx = 삭제_버튼_모임.indexOf(e.target)
+
+    const liclass_모임 = Array.from(
+      $id가_list인_ul.querySelectorAll('.liclass')
+    )
+    liclass_모임[지워야할_요소의_idx].remove()
+  }
+})
