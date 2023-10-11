@@ -9,3 +9,40 @@ const 첫번째_input = document.querySelector('input') // 첫번째 input 태�
     e.target.value = 적힌_text.replace(regex, '')
   }
 })
+
+/* [5] */
+const 두번째_input = document.querySelector('#list_data')
+const id가_list인_ul = document.querySelector('#list')
+const 저장_button = document.querySelector('#send')
+const 초기화_button = document.querySelector('[type=reset]')
+
+// 1. 엔터를 누른 경우
+두번째_input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const input_적힌_text = e.target.value
+    const 새로운_li = document.createElement('li') // li 요소를 생성
+    새로운_li.textContent = input_적힌_text // 새로 만든 li태그에 적힐 text 할당
+    id가_list인_ul.appendChild(새로운_li) // ui 에 추가
+    e.preventDefault() // 페이지 새로고침 막기
+  }
+})
+
+// 2. 저장버튼을 누른 경우
+저장_button.addEventListener('click', (e) => {
+  const input_적힌_text = 두번째_input.value
+  const 새로운_li = document.createElement('li') // li 요소를 생성
+  새로운_li.textContent = input_적힌_text // 새로 만든 li태그에 적힐 text 할당
+  id가_list인_ul.appendChild(새로운_li) // ui 에 추가
+  e.preventDefault() // 페이지 새로고침 (제출) 막기
+})
+
+// 3. 초기화 버튼을 누른 경우
+초기화_button.addEventListener('click', (e) => {
+  const input_적힌_text = 두번째_input.value
+  while (id가_list인_ul.childElementCount) {
+    // ul의 자식 요소 갯수가 0이 아닐동안
+    const ul의_마지막자식 = id가_list인_ul.lastChild // ul 의 자식 중 마지막 요소부터
+    id가_list인_ul.removeChild(ul의_마지막자식) // 하나씩 제거
+  }
+  e.preventDefault() // 페이지 새로고침 막기
+})
