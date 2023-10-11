@@ -20,9 +20,7 @@ const 초기화_button = document.querySelector('[type=reset]')
 두번째_input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     const input_적힌_text = e.target.value
-    const 새로운_li = document.createElement('li') // li 요소를 생성
-    새로운_li.textContent = input_적힌_text // 새로 만든 li태그에 적힐 text 할당
-    id가_list인_ul.appendChild(새로운_li) // ui 에 추가
+    새로운_리스트_요소_만들기(input_적힌_text)
     e.preventDefault() // 페이지 새로고침 막기
   }
 })
@@ -30,10 +28,8 @@ const 초기화_button = document.querySelector('[type=reset]')
 // 2. 저장버튼을 누른 경우
 저장_button.addEventListener('click', (e) => {
   const input_적힌_text = 두번째_input.value
-  const 새로운_li = document.createElement('li') // li 요소를 생성
-  새로운_li.textContent = input_적힌_text // 새로 만든 li태그에 적힐 text 할당
-  id가_list인_ul.appendChild(새로운_li) // ui 에 추가
-  e.preventDefault() // 페이지 새로고침 (제출) 막기
+  새로운_리스트_요소_만들기(input_적힌_text)
+  e.preventDefault() // 페이지 새로고침 막기
 })
 
 // 3. 초기화 버튼을 누른 경우
@@ -46,3 +42,28 @@ const 초기화_button = document.querySelector('[type=reset]')
   }
   e.preventDefault() // 페이지 새로고침 막기
 })
+
+const 새로운_리스트_요소_만들기 = (적을내용) => {
+  const new_li = document.createElement('li')
+  new_li.classList.add('liclass')
+
+  const new_p = document.createElement('p')
+  new_p.textContent = 적을내용
+
+  const new_수정_button = document.createElement('button')
+  new_수정_button.type = 'button'
+  new_수정_button.innerHTML = '수정'
+
+  const new_삭제_button = document.createElement('button')
+  new_삭제_button.type = 'button'
+  new_삭제_button.innerHTML = '삭제'
+
+  new_p.appendChild(new_수정_button)
+  new_p.appendChild(new_삭제_button)
+
+  new_li.appendChild(new_p)
+
+  id가_list인_ul.appendChild(new_li) // ui 에 추가
+}
+
+/* [6] */
