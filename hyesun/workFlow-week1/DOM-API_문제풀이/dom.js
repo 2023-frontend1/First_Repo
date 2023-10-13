@@ -17,6 +17,7 @@ inputElement.addEventListener("input", function (event) {
   }
 });
 
+// -------------------------------------------
 // 5-6번 문제
 // 필요한 요소들 가져온다
 const list = document.getElementById("list");
