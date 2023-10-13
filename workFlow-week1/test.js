@@ -32,21 +32,24 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault(); // 기본 폼 전송 동작 막기
 
 	const listDataInput = document.getElementById("list_data");
-	const inputValue = listDataInput.value.trim();
+	const inputValue = listDataInput.value.trim(); // 텍스트에 입력있는지 감지, 공백을 없애기 앞뒤로
 
 	if (inputValue !== "") {
-		const newLi = document.createElement("li");
-		newLi.textContent = inputValue;
-		newLi.classList.add("liclass");
+		//입력이 비어있지않은지 확인
+		const newLi = document.createElement("li"); // 새로운 li요소 생성
+		newLi.textContent = inputValue; // 새로운 텍스트 넣어주기
+		newLi.classList.add("liclass"); // 클래스 넣기
 
-		const editButton = createButton("수정", () => openModal(newLi));
+		const editButton = createButton("수정", () => openModal(newLi)); // 수정버튼 생성하고 누를시 모달창 생기기
 		const deleteButton = createButton("삭제", () => {
-			if (confirm("정말 삭제하시겠습니까?")) {
-				newLi.remove();
+			// 삭제버튼 만들기
+			if (confirm("진짜진짜진짜 삭제할거에요?")) {
+				// 삭제 물어보기
+				newLi.remove(); // 삭제하기
 			}
 		});
 
-		newLi.appendChild(editButton);
+		newLi.appendChild(editButton); // 요소 안에 버튼 넣어주기 새로 생긴 li안에 버튼생김
 		newLi.appendChild(deleteButton);
 
 		// 기존 리스트에 추가
@@ -73,7 +76,7 @@ function createButton(text, onClick) {
 
 // 유틸리티 함수: 모달 열기
 function openModal(liElement) {
-	const newText = prompt("수정할 내용을 입력하세요.", liElement.textContent);
+	const newText = prompt("수정할 내용을 입력하세요.", "");
 	if (newText !== null) {
 		liElement.textContent = newText;
 		const editButton = createButton("수정", () => openModal(liElement));
