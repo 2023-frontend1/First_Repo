@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     InsertOption(bank_name)
   }
 })
+
 const $input$id$account_input = document.querySelector('input#account-input')
+const $button = document.querySelector('button')
+
+// Enter 눌렀을 때, input 의 값이 12자리 이상이면 게시
 $input$id$account_input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     const text = e.target.value
@@ -22,6 +26,20 @@ $input$id$account_input.addEventListener('keypress', (e) => {
     e.preventDefault()
   }
 })
+// 버튼 눌렀을 때, input 의 값이 12자리 이상이면 게시
+$button.addEventListener('click', (e) => {
+  const text = $input$id$account_input.value
+  if (text.length < 12) {
+    alert('12자리가 아닙니다.')
+    e.preventDefault()
+    return
+  }
+  const parsed_account = ParseAccount(text)
+  const completed_text = AppendBankName(parsed_account)
+  SummitAccount(completed_text)
+  e.preventDefault()
+})
+
 // 전달된 계좌 번호에 은행이름 붙혀주기
 const AppendBankName = (account) => {
   const $select$id$back_selector = document.querySelector(
