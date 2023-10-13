@@ -38,7 +38,7 @@ $form.append(deleteBtn);
 updateBtn.innerText = "수정";
 $form.append(updateBtn);
 
-// 리스트가 추가되거나 수정할 때 필요한 요소들을 만들어 놓는다
+// 리스트가 추가되거나 수정할 때 필요한 요소 만들기
 function createLi(text) {
   const li = document.createElement("li");
   li.className = "liclass";
