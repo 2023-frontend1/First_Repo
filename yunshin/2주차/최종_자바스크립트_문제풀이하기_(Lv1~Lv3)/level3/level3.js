@@ -2,12 +2,24 @@
 
 const $button = document.querySelector('button')
 const $button$id$summit_button = document.querySelector('button#submit_button')
+const $table = document.querySelector('table')
 
 // "추가" 버튼 클릭 시, 이벤트 처리
 $button.addEventListener('click', (e) => {
   const ingredient = GetIngredient()
   const weight = GetWeight()
   AppendTableItem(ingredient, weight)
+  e.preventDefault()
+})
+
+// "삭제" 버튼 클릭 시, 이벤트 처리
+$table.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete_button')) {
+    const delete_idx = Array.from(
+      $table.querySelectorAll('button.delete_button')
+    ).indexOf(e.target)
+    RemoveTableItemByIdx(delete_idx + 1)
+  }
   e.preventDefault()
 })
 
@@ -46,6 +58,11 @@ const AppendTableItem = (ingredient, weight) => {
   $new_tr.appendChild($new_th_무게)
   $new_tr.appendChild($new_th_관리)
 
-  const $table = document.querySelector('table')
   $table.appendChild($new_tr)
+}
+// 삭제할 table 하위 항목의 index 를 전달받아, 삭제한다.
+const RemoveTableItemByIdx = (idx) => {
+  const tr_group = Array.from($table.querySelectorAll('tr'))
+  if (idx >= tr_group.length) return
+  tr_group[idx].remove()
 }
