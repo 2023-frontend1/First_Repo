@@ -11,9 +11,10 @@ $button.addEventListener('click', (e) => {
 
   let reservation_number = -1
   for (const { name, phone, number } of RESERVATION_LIST) {
-    if (input_name === name && input_phone === phone)
+    if (input_name === name && input_phone === phone) {
       reservation_number = number
-    break
+      break
+    }
   }
   // 예약 번호가 없으면
   reservation_number === -1
