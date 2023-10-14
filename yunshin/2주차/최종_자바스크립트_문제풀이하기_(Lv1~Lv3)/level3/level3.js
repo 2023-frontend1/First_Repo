@@ -8,6 +8,11 @@ const $ul$id$ingredient_list = document.querySelector('ul#ingredient-list')
 // "추가" 버튼 클릭 시, 이벤트 처리
 $button.addEventListener('click', (e) => {
   const ingredient = GetIngredientFromInput()
+  if (CheckIsInTr(ingredient)) {
+    alert('이미 존재하는 재료입니다.')
+    e.preventDefault()
+    return
+  }
   const weight = GetWeightFromInput()
   AppendTableItem(ingredient, weight)
   e.preventDefault()
@@ -44,6 +49,15 @@ const GetIngredientFromInput = () => {
 const GetWeightFromInput = () => {
   const $input$name$weight = document.querySelector('input[name=weight]')
   return $input$name$weight.value
+}
+
+// tr 태그 에 있는 재료인지 판단한다. (tr 내부에 있는 재료라면 true, 아니라면 false)
+const CheckIsInTr = (ingredient) => {
+  const pairs_ingredient_weight = GetIngredientAndWeightAllFromTr()
+  for (const [trIngredient, _] of pairs_ingredient_weight) {
+    if (ingredient === trIngredient) return true
+  }
+  return false
 }
 
 // table 에 있는 모든 tr 태그로부터 [재료, 무게] 을 가져온다.
