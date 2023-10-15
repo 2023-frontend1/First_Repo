@@ -7,18 +7,17 @@ inputElement.addEventListener("input", function (event) {
   // .test() 함수는 해당하는 값이 있는지 찾는다
   // /\d/ 이게 정규표현식으로 숫자를 뜻한다고함
   const number = /\d/.test(inputValue);
-
+  // console.log(number)
   if (number) {
     alert("숫자는 입력할 수 없습니다!");
     event.target.value = "";
-
+    // console.log(number)
     // const numDel = inputValue.replace(/\d/g, '');
     // event.target.value = numDel;
   }
 });
 
-// -------------------------------------------
-// 5-6번 문제
+// 5-6번 문제 여기부터 보시면 될것같아여 위는4번이 네ㅔ네
 // 필요한 요소들 가져온다
 const list = document.getElementById("list");
 const listData = document.getElementById("list_data");
@@ -61,7 +60,7 @@ addBtn.addEventListener("click", () => {
   }
 
   // listData input으로 받은값을 넣어준다
-  const newLi = createLi(listData.value);
+  let newLi = createLi(listData.value);
   // 저장누르고, 지우고 다시 쓰기 귀찮아서
   listData.value = "";
 
@@ -76,6 +75,7 @@ addBtn.addEventListener("click", () => {
   let input = document.createElement("input");
   input.placeholder = newLi.innerText;
   // 처음 수정 버튼 눌렀을 때 input으로 바뀐다
+
   function edit() {
     if (newLi.querySelector("input[type=checkbox]").checked) {
       newLi.replaceWith(input);
@@ -87,6 +87,8 @@ addBtn.addEventListener("click", () => {
   function update() {
     const updatedText = input.value;
     const updatedLi = createLi(updatedText);
+    newLi = updatedLi;
+
     // console.log(updatedLi);
     input.replaceWith(updatedLi);
     //수정된 글도 삭제할 수 있게하기 위해
