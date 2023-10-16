@@ -9,6 +9,7 @@
 제출 버튼 누르면 key value처럼 나오게
 삭제는 삭제되게
 */
+//선언부
 const form = document.getElementById("ingredient-form");
 const Dataingredient = {};
 const table = document.querySelector("table");
@@ -21,28 +22,20 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	let ing_name = document.getElementsByName("ingredient")[0].value;
 	let wei_name = document.getElementsByName("weight")[0].value;
-	console.log(ing_name);
-	console.log(wei_name);
-	Dataingredient[ing_name] = wei_name;
-	console.log(Dataingredient);
-
-	if (Dataingredient[ing_name]) {
-		alert("이미 존재하는 재료입니다.");
+	if (DataCheck(ing_name)) {
+		alert("같은 재료가 있습니다.");
 		return;
 	}
+	Dataingredient[ing_name] = wei_name;
 	//테이블 부분
 	let row = table.insertRow(-1); // 제일 마지막 row
 	let 재료 = row.insertCell(0);
 	let 무게 = row.insertCell(1);
 	let 관리 = row.insertCell(2);
-
 	재료.innerHTML = ing_name;
 	무게.innerHTML = wei_name;
 	관리.innerHTML = '<button onclick="deleteIngredient(this)">삭제</button>';
-
-	Dataingredient[ing_name] = wei_name;
 });
-
 //삭제버튼
 function deletebtn(button) {
 	let row = button.parentNode.parentNode; //버튼위 부모 부모 노드
@@ -59,9 +52,6 @@ submitButton.addEventListener("click", function () {
 		if (Dataingredient.hasOwnProperty(key)) {
 			let value = Dataingredient[key];
 			let li_app = document.createElement("li");
-			console.log(Dataingredient);
-			console.log(key);
-			console.log(value);
 			li_app.textContent = `${key} : ${value}`;
 			추가.appendChild(li_app);
 		}
@@ -69,3 +59,15 @@ submitButton.addEventListener("click", function () {
 	내용추가.innerHTML = ""; //초기화
 	내용추가.appendChild(추가);
 });
+console.log(1);
+// 여기는 중복값 검사
+function DataCheck(ing_name) {
+	// console.log(Object.keys(Dataingredient).length);
+	// console.log(Object.key(Dataingredient)[1]);
+	console.log(ing_name);
+	for (let i = 0; i < Object.keys(Dataingredient).length; i++) {
+		if (Object.keys(Dataingredient)[i] === ing_name) {
+			return true;
+		}
+	}
+}
