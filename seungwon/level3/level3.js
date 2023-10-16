@@ -17,6 +17,7 @@ const submitButton = document.getElementById("submit_button");
 const 내용추가 = document.getElementById("ingredient-list");
 
 // 제출버튼
+
 console.log(Dataingredient);
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -28,21 +29,38 @@ form.addEventListener("submit", (event) => {
 	}
 	Dataingredient[ing_name] = wei_name;
 	//테이블 부분
-	let row = table.insertRow(-1); // 제일 마지막 row
-	let 재료 = row.insertCell(0);
-	let 무게 = row.insertCell(1);
-	let 관리 = row.insertCell(2);
+	let 행추가 = table.insertRow(-1); // 제일 아래에 행 추가
+	let 재료 = 행추가.insertCell(0);
+	let 무게 = 행추가.insertCell(1);
+	let 관리 = 행추가.insertCell(2);
 	재료.innerHTML = ing_name;
 	무게.innerHTML = wei_name;
-	관리.innerHTML = '<button onclick="deleteIngredient(this)">삭제</button>';
+	let DeletePlease = document.createElement("button");
+	DeletePlease.textContent = "삭제";
+	DeletePlease.addEventListener("click", function () {
+		deletebtn(this);
+	});
+	관리.appendChild(DeletePlease);
 });
-//삭제버튼
+
+// //삭제버튼
 function deletebtn(button) {
-	let row = button.parentNode.parentNode; //버튼위 부모 부모 노드
-	let ing_name = row.cells[0].innerHTML; // 버튼있는 부분의 재료
-	table.deleteRow(row.rowIndex);
+	let 행추가 = button.parentNode.parentNode; //버튼위 부모 부모 노드
+	let ing_name = 행추가.cells[0].innerHTML; // 버튼있는 부분의 재료
+	table.deleteRow(행추가.rowIndex);
 	delete Dataingredient[ing_name]; //재료가 있는 무게 객체 삭제
 }
+
+// document.addEventListener("DOMContentLoaded", function (event) {
+// 	event.preventDefault();
+// 	function deletebtn(button) {
+// 		let 행추가 = button.parentNode.parentNode; //버튼위 부모 부모 노드
+// 		console.log(행추가);
+// 		let ing_name = 행추가.cells[0].innerHTML; // 버튼있는 부분의 재료
+// 		table.deleteRow(행추가.rowIndex);
+// 		delete Dataingredient[ing_name]; //재료가 있는 무게 객체 삭제
+// 	}
+// });
 
 //출력버튼
 submitButton.addEventListener("click", function () {
@@ -64,7 +82,6 @@ console.log(1);
 function DataCheck(ing_name) {
 	// console.log(Object.keys(Dataingredient).length);
 	// console.log(Object.key(Dataingredient)[1]);
-	console.log(ing_name);
 	for (let i = 0; i < Object.keys(Dataingredient).length; i++) {
 		if (Object.keys(Dataingredient)[i] === ing_name) {
 			return true;
