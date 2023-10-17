@@ -57,6 +57,7 @@ const prevCount = (e) =>{
   <div>${users[count].age}</div>
   <div>${users[count].height}</div>
 `;
+  return count
  e.preventDefault()
 }
 
