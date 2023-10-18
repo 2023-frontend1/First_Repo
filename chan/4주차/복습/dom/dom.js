@@ -30,6 +30,7 @@ const $prevBtn = document.querySelector('button:nth-child(2)')
 const $nextBtn = document.querySelector('button:nth-child(3)')
 const $info = document.querySelector('#info');
 let count=0// 현재위치 확인하는 변수count
+
 $info.innerHTML = `
     <div>${users[0].name}</div>
     <div>${users[0].age}</div>
@@ -45,7 +46,7 @@ const nextCount = (e) =>{
   <div>${users[count].height}</div>
 `;
  e.preventDefault()
- return count
+//  return count
 }
 
 //preVBtn누를때 동작하는 함수
@@ -57,8 +58,9 @@ const prevCount = (e) =>{
   <div>${users[count].age}</div>
   <div>${users[count].height}</div>
 `;
-  return count
- e.preventDefault()
+  
+  e.preventDefault()
+  // return count
 }
 
 
