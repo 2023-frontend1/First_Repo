@@ -28,9 +28,9 @@ $postDetail.innerHTML = `
 const CreateNewComment = (nickName, content) => {
   const $new_li = document.createElement('li')
   $new_li.classList.add('comment_li')
-
+ 
   // 제목
-  const $new_p = document.createElement('p')
+  const $new_p = document.createElement('p');
   $new_p.textContent = content
   // 사용자 이름
   const $new_span = document.createElement('span')
