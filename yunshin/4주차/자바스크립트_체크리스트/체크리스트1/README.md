@@ -14,8 +14,8 @@ function on() {
   return engine
 }
 
-console.log(on()) // 결과값은? => true
-console.log(engine) // 결과값은?  => false
+console.log(on())
+console.log(engine)
 ```
 
 ### 답변
@@ -26,6 +26,12 @@ console.log(engine) // 결과값은?  => false
 
 - 지역변수 란 선언한 함수 내에서만 접근이 가능한 변수
   (동일한 이름의 전역변수와 지역변수가 모두 존재할 경우, 지역변수로 우선 접근한다.)
+
+- 출력 결과
+  ```
+  true
+  false
+  ```
 
 <br/>
 <br/>
