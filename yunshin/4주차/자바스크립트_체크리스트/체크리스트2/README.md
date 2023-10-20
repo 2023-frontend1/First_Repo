@@ -13,4 +13,10 @@
 > - on() // 시동이 걸렸습니다.
 > - on() // 이미 시동이 걸려있습니다.
 
-### 답변
+### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4%EC%A3%BC%EC%B0%A8/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EC%B2%B4%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%8A%B8/%EC%B2%B4%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%8A%B82/%EC%8B%9C%EB%8F%99.js))
+
+> -- 올바른 경우 --
+<img width="324" alt="올바른_경우" src="https://github.com/2023-frontend1/First_Repo/assets/50646145/639ed175-65a4-47fc-bceb-67a284d66d9a">
+
+> -- 이미 엔진이 걸려있는 경우 --
+<img width="321" alt="이미_엔진이_걸려있는_경우" src="https://github.com/2023-frontend1/First_Repo/assets/50646145/c0adfbcc-5c6c-4f15-89ae-1ab587e91d68">
