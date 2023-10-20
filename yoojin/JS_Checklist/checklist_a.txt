@@ -16,10 +16,6 @@ console.log(on()) // 결과값은 true
 console.log(engine) // 결과값은 false 
 ---------------------------------------
 
-2. 
-
-
----------------------------------------
 
 3. ????
 
@@ -50,6 +46,7 @@ key = 이름
 value = key에 들어갈 값
 
 (2)
+    "배열에서 인덱스를 사용해야하는 순간은 언제일까요?"
 We use the index of an array when we want to specify the item you want to change
 or use 
 
@@ -63,37 +60,91 @@ or use
 
 ---------------------------------------
 
-6.
-        1-1) 모든 요소를 순회할 필요 없이 특정 조건의 인덱스만 순회하고 싶을 때 // for 
-
-		1-2) 모든 요소를 순회해야하지만 순회시 내 설계상 인덱스가 필요할 때 //forEach
-
-		1-3) 모든 요소를 순회해야할 때 //for of
-
-		1-4) 객체의 키를 순회해서 객체의 모든 키 값에 접근해야할 때 //for in
-
----------------------------------------
-
 ---------------------------------------
 
 8.
-(1) 
+(1) "객체와 배열은 각각 어느 순간에 사용해야할까요 key와 index를 중심으로 정의해보세요"
+
 
 (2)
 const hello = {a : 123, b : 'okay', c: ['d', 'e', 'f']}
+
         2-1) Object.values(hello) // [123, 'okay', ['d','e','f']]
 	 
 		2-2) Object.keys(hello) // ['a','b','c']
 
-		2-3) Object.entries(hello) // "a : 123"
-                                    "b : 'okay'"...
+		2-3) Object.entries(hello) // ['a', 123]
+                                    ['b', 'okay']
+                                    ['c', ['d','e','f']]
+    Object.values() returns an array of the values in the object 
+    Obejct.key() returns an array of the keys in the object as strings
+    Obejct.entries() retu multiple arrays of the key and value of the object 
 ---------------------------------------
 
 9. 
 
-filter filters out the items you dont want and creates a new array of items you wanted
-sort sorts out a list of items in an array into order
-findIndex returns index of the first array element that satisfies the the provided test function; else it returns -1
-find is like filter except it only returns a single element and when nothing is foudn
+ const users = [
+    {id: 1, name: "pedro", age: 26 },
+    {id: 2, name: "john", age: 22 },
+    {id: 3, name: "jessica", age: 56 },
+    {id: 4, name: "rio ferdinand", age: 126},
+    {id: 5, name: "michael scott", age: 45}
+];
+
+
+filter: filters out the items you dont want and creates a new array of items you wanted.
+
+Ex) Using filter() we're going to remove the user named "Pedro" 
+
+const removeUser = (name) => { 
+/* using an arrow function we named 'removeUser' 
+we have a parameter 'name' which we can add an argument of who we want to remove*/
+
+	const newUserArray = users.filter((user) => {
+/* creating a new array we will use the filter() method to filter out the name we don't want 
+as our object property */
+
+		return user.name != name 
+    // return all the user names that are not equal to the name I passed in the function parameter 
+		})
+	return newUserArray;
+    // return newUserArray to removeUser function 
+};
+
+removeUser("pedro");
+
+expected output: 
+//{id: 2, name: "john", age: 22 },
+//{id: 3, name: "jessica", age: 56 },
+//{id: 4, name: "rio ferdinand", age: 126},
+//{id: 5, name: "michael scott", age: 45}
+
+-----------------------------------------------------------------------------------------------
+
+reduce: allows you to reduce down an array into a singular value which is typically not an array but instead things like a number or a string
+
+const array = [1, 5, 6, 4, 23, 4, 5, 2, 4]; 
+//when using reduce() you need 2 values and an initial value 
+
+const sum = array.reduce((sum, number) => { 
+// sum being a accumulative value (represents all the numbers as a whole) and number representing each element in the existing array 
+	return sum + number 
+}, 0) //initial value is like the starting point 
+
+console.log(sum); //54
+
+-----------------------------------------------------------------------------------------------
+
+sort: sorts out a list of items in an array into order
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();
+
+expected output:
+["Apple", "Banana", "Mango", "Orange"]
+
+findIndex: returns index of the first array element that satisfies the the provided test function; else it returns -1
+
+
+find: is like filter except it only returns a single element and when nothing is foudn
 it returns 'undefined' 
-reduce allows you to reduce down an array into a singular value which is typically not an array but instead things like a number or a string
