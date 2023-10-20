@@ -57,7 +57,7 @@ const PrintEmail = (email) => {
 // 사용자가 구독한 채널을 출력하는 함수
 const Print구독정보 = (구독정보) => {
   console.log('구독한 채널: ')
-  구독정보.forEach((채널명) => [console.log('- ' + 채널명)])
+  구독정보.forEach((채널명) => [console.log('\t - ' + 채널명)])
 }
 
-PrintUserInfo(5)
+PrintUserInfo(2)
