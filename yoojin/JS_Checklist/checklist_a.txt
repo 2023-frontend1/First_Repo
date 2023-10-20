@@ -51,7 +51,7 @@ We use the index of an array when we want to specify the item you want to change
 or use 
 
 (3) ** come back later
-
+https://webdesign.tutsplus.com/how-to-build-a-simple-carousel-with-vanilla-javascript--cms-41734t
 ---------------------------------------
 
 5.
@@ -64,6 +64,8 @@ or use
 
 8.
 (1) "객체와 배열은 각각 어느 순간에 사용해야할까요 key와 index를 중심으로 정의해보세요"
+If you want to manipulate individual properties, you want an object
+Doing manipulations over the data as a whole, or filtering and manipulating chunks of the data, you likely want an array.
 
 
 (2)
