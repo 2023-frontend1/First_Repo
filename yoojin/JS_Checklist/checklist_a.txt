@@ -142,9 +142,31 @@ fruits.sort();
 
 expected output:
 ["Apple", "Banana", "Mango", "Orange"]
+-----------------------------------------------------------------------------------------------
 
 findIndex: returns index of the first array element that satisfies the the provided test function; else it returns -1
 
 
-find: is like filter except it only returns a single element and when nothing is foudn
-it returns 'undefined' 
+let days = ["Sunday", "Wednesday", "Tuesday", "Friday"];
+
+let index = days.findIndex((day) => day === "Wednesday"); //arrow function
+// returns the first index of 'Wednesday' in the array
+
+console.log(index); // 1
+
+-----------------------------------------------------------------------------------------------
+
+find: is like filter except it only returns a single element and when nothing is found it returns 'undefined' 
+
+Ex)
+const trees = [ 
+  "birch", 
+  "maple", 
+  "oak"
+];
+
+const result = trees.find(function(tree) {
+  return tree.startsWith("m");
+});
+
+// "maple"
