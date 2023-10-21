@@ -38,3 +38,4 @@
 위 문제를 풀이해보세요!
 
 ### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/자바스크립트_체크리스트/체크리스트4/무지개.html) )
+![무지개버튼](https://github.com/2023-frontend1/First_Repo/assets/50646145/fe5d7203-b306-4ce9-ac12-1cddefde61a5)
