@@ -35,3 +35,5 @@ posts의 모든 요소를 순회하여 각 순회당 데이터를 콜백함수�
     find, findInex, filter, sort, reduce, ....
 
 ### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/자바스크립트_체크리스트/체크리스트9/blog.js))
+![게시물_정렬](https://github.com/2023-frontend1/First_Repo/assets/50646145/40715ab5-982e-4a2c-82a8-2689ce3c03c1)
+
