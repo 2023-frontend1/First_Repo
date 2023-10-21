@@ -47,7 +47,7 @@ const users = [
 - 내가 원하는 유저를 삭제할 수 있어야합니다.
 - 단, 동일한 유저의 이름이 있더라도 정확히 원하는 유저여야합니다.
 
-### 풀이 [SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q2/q2.js#L47) )
+### 풀이 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q2/q2.js#L47) )
 
 - 삭제할 유저의 id를 입력받아, `users` array 에서 해당 id 를 가진 객체의 index 를 구함.
 - splice() 에 index 를 입력으로 넣어, 원본 array 에서 해당 객체 제거.
