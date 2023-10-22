@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+<div>
+    <p>무지개</p>
+    <button>색상변경</button>
+</div>
+
+<script>
+    // 7가지색을 담고 있는 colorBox배열 선언
+    const colorBox = ['#ff0000','#ffa500','#ffff00','#008000','#0000ff','#000080','#800080']    
+    // text를 담고 있는 p태그가져옴
+    const $textRainbow = document.querySelector('div > p')
+    // button 태그 가져옴
+    const $colorBtn = document.querySelector('div > button ')
+    let count = 0;
+    // 버튼클릭할 때마다 text색바꿔주는 event
+    $colorBtn.addEventListener('click', (color)=>{
+        $textRainbow.style.color = colorBox[count]
+        count++
+        if(count === colorBox.length){count = 0} 
+        color.preventDefault()
+    })    
+</script>
+</body>
+</html>
