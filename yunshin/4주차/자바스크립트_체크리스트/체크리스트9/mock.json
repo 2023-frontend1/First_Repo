@@ -1,0 +1,44 @@
+{
+  "post": [
+    {
+      "id": 1,
+      "title": "제목1",
+      "content": "내용1..",
+      "writer": "김성용",
+      "likes": 2,
+      "viewCount": 10000
+    },
+    {
+      "id": 2,
+      "title": "제목2",
+      "content": "내용2..",
+      "writer": "김성용",
+      "likes": 100000,
+      "viewCount": 1321003
+    },
+    {
+      "id": 3,
+      "title": "제목3",
+      "content": "내용3...",
+      "writer": "김성용",
+      "likes": 22,
+      "viewCount": 123215
+    },
+    {
+      "id": 4,
+      "title": "제목4",
+      "content": "내용4..",
+      "writer": "김성용",
+      "likes": 3000,
+      "viewCount": 3465
+    },
+    {
+      "id": 5,
+      "title": "제목5",
+      "content": "내용5..",
+      "writer": "김성용",
+      "likes": 4,
+      "viewCount": 10
+    }
+  ]
+}

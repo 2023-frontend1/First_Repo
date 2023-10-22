@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer type="module" src="./blog.js"></script>
+    <title>Document</title>
+    <style>
+      body * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-style: normal;
+      }
+      ul {
+        list-style: none;
+      }
+      .blog .top_btn {
+        text-align: right;
+      }
+      .blog ul {
+        margin-top: 10px;
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+      }
+      .blog li {
+        padding: 20px;
+      }
+      .blog li + li {
+        border-top: 1px solid #efefef;
+      }
+      .blog li .top {
+        display: flex;
+      }
+      .blog li .top .title {
+        flex: 1;
+      }
+      .blog li .top .write {
+        flex: 0 0 auto;
+      }
+      .blog li .top .count {
+        flex: 0 0 auto;
+        margin-left: 20px;
+      }
+      .blog li .top .count .like,
+      .blog li .top .count .view {
+        position: relative;
+        margin-left: 10px;
+        padding-left: 15px;
+      }
+      .blog li .top .count .like::before,
+      .blog li .top .count .view::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        content: '';
+      }
+      .blog li .top .count .like::before {
+        background-color: blueviolet;
+      }
+      .blog li .top .count .view::before {
+        background-color: cornflowerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blog">
+      <div class="top_btn">
+        <button class="likes">좋아요 순</button>
+        <button class="views">조회수 순</button>
+      </div>
+      <ul></ul>
+    </div>
+  </body>
+</html>

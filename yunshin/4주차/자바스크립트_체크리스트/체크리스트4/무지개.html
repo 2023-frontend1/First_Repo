@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span class="rainbow">무지개</span>
+    <button class="change" type="button">컬러변경</button>
+    <script>
+      const $span$class$rainbow = document.querySelector('.rainbow')
+      const $button$class$change = document.querySelector('.change')
+      const colorList = [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'navy',
+        'violet',
+      ]
+      let curColorIdx = 0
+      $span$class$rainbow.style.color = colorList[curColorIdx] // 초기 색상 부여
+
+      $button$class$change.addEventListener('click', () => {
+        curColorIdx += 1
+        if (curColorIdx >= colorList.length) curColorIdx = 0
+        $span$class$rainbow.style.color = colorList[curColorIdx]
+      })
+    </script>
+  </body>
+</html>
