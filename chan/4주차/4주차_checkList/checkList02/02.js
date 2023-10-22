@@ -10,18 +10,21 @@ on() // 시동이 걸렸습니다.
 */
 let engine = false            // 전역변수 engine선언 ==> on(),off()에 매개변수로사용해서 시동상태 check 
 
-const on = (engineCheck) => {
-    if(engineCheck === true){
+const on = () => {
+    if(engine === true){
         console.log("이미 시동이 걸려있습니다.")
         return;
     }
     console.log("시동이 걸렸습니다.")
     engine = true
-    return engine
+
 }
 
-const off = (engineCheck) => {
+const off = () => {
     console.log("시동이 꺼져있습니다.")
     engine = false
-    return engine
+    
 }
+
+on()
+on()

@@ -4,6 +4,7 @@
 //==> 1. if문을 사용해서 분기점을 나눌 수 있다.
 //==> 2. 분기 점이 많다면 switch case로 작성하면 가독성이 더 좋다.
 
+
 //(2) 자바스크립트에서 분기점이 생성되는 상황은 언제일까요?
 /*	- 경우에 따라 값이 다를 때
    case별로 값이 다를때 if문이나 switch문을 사용 할 수있는데. 
@@ -14,7 +15,7 @@
     switch(oper){
         case 1 : result = num1 + num2
         break;
-         case 2 : result = num1 - num2
+        case 2 : result = num1 - num2
         break;
         case 3 : result = num1 * num2
         break;
@@ -24,6 +25,7 @@
         }
       return result
     }
+    console.log(calc(4,100,20))
   /* 분기점이 범위별로 나눠질 경우 
    if문 사용*/
 
