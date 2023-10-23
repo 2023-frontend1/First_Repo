@@ -1,17 +1,26 @@
 import mockPost from "./mock.json" assert { type: "json" };
-console.log(mockPost);
 
 const $postDetail = document.querySelector("#post-detail");
 const $repliesList = document.querySelector("#replies-list");
-const $input = document.querySelector("input");
-const $addButton = document.querySelector("button");
+const $input = document.querySelector("input"); //입력 인풋
+const $addButton = document.querySelector("button"); //추가 버튼
 
 // 게시글 내용 표시
 $postDetail.innerHTML = `
   <h2>${mockPost.post.title}</h2>
-  <p>게시글 작성자: ${mockPost.post.User.nickName}</p>
-  <p>${mockPost.post.content}</p>
+  <p>작성자: ${mockPost.post.User.nickName} <br> ${mockPost.post.content}</p>
 `;
+
+// mock 객체 출력 함수
+function displayReplies() {
+	$repliesList.innerHTML = mockPost.post.Replies.map(
+		(reply) => `
+    <li>${reply.User.nickName}: ${reply.content}</li>
+  `
+	).join("");
+}
+
+displayReplies();
 
 /* 
     import(참조)한 json data를
