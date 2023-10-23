@@ -19,5 +19,5 @@ Cons:
 
     - majority of the code is written in JSX, meaning HTML & CSS are part of the JS code.
         [This could be a problem because most other frameworks like to keep HTML separate from the JS code.]
-        
+
     - React has a huge file size.
