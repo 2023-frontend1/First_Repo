@@ -1,0 +1,17 @@
+1. 전역변수와 지역변수의 차이를 명확히 알고 있는가
+
+전역변수 - global variable
+지역변수 - local variable 
+
+전역변수는 함수 밖에서 선언되는 변수이자 어디서든 사용이 가능하다
+지역변수는 함수 안에서 선언되는 변수라서 함수밖에 불러오려고하면 에러/undefined가 뜰 수 있다
+
+let engine = false
+
+function on() {
+ let engine = true;
+ return engine
+}
+
+console.log(on()) // 결과값은 true
+console.log(engine) // 결과값은 false 
