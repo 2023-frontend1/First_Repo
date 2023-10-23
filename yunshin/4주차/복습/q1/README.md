@@ -48,7 +48,7 @@ const user = {
 
 ## 문제2. 값이 “김성용”인 속성의 key 찾기
 
-### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q1/q1.js#L38) )
+### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q1/q1.js#L31) )
 
 <div align = "center">
 <img width="390" alt="스크린샷 2023-10-23 오후 10 58 00" src="https://github.com/2023-frontend1/First_Repo/assets/50646145/6df5204e-0188-4bec-8285-9944e136057a">
@@ -56,7 +56,7 @@ const user = {
 
 ## 문제3. 깊은 복사를 통해 user 객체의 복사본을 만든 후 name을 본인의 이름으로 수정
 
-### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q1/q1.js#L45) )
+### 답변 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/4주차/복습/q1/q1.js#L61) )
 
 <div align = "center">
 <img width="394" alt="스크린샷 2023-10-23 오후 11 02 20" src="https://github.com/2023-frontend1/First_Repo/assets/50646145/2b35a69a-d773-493e-bacb-0c4e4a236d1e">
