@@ -50,20 +50,31 @@ value = key에 들어갈 값
 We use the index of an array when we want to specify the item you want to change
 or use 
 
-(3) ** come back later
-https://webdesign.tutsplus.com/how-to-build-a-simple-carousel-with-vanilla-javascript--cms-41734t
+(3) 
 ---------------------------------------
 
 5.
 
-1-4) is not a function
 
 ---------------------------------------
+6. 
+순회 = loop..???
+    1-1) 모든 요소를 순회할 필요 없이 특정 조건의 인덱스만 순회하고 싶을 때 = for 
+        without looping all elements but looping a specific index only
 
+	1-2) 모든 요소를 순회해야하지만 순회시 내 설계상 인덱스가 필요할 때  = 
+        every element loop each loop by design index 
+
+	1-3) 모든 요소를 순회해야할때 = 
+        when you need to loop all elements
+
+	1-4) 객체의 키를 순회해서 객체의 모든 키 값에 접근해야할 때 = for in 
+        looping through the object key then accessing the values 
 ---------------------------------------
 
 8.
 (1) "객체와 배열은 각각 어느 순간에 사용해야할까요 key와 index를 중심으로 정의해보세요"
+
 If you want to manipulate individual properties, you want an object
 Doing manipulations over the data as a whole, or filtering and manipulating chunks of the data, you likely want an array.
 
