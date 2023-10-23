@@ -1,3 +1,4 @@
+
 const musicListData = [
   {
     src: "./assets/img/iu_0.jpg",
@@ -20,6 +21,7 @@ const renderMusicList = () => {
     const $albumCover_img = document.createElement("img");
     $albumCover_img.setAttribute("src", data.src);
     $albumCover_img.classList.add("album_cover");
+
     $imageList.appendChild($albumCover_img);
   });
 };
@@ -30,30 +32,18 @@ window.onload = renderMusicList();
 const $albumcover_List = Array.from(
   document.querySelectorAll(".list_btn_group > ul > img")
 );
-const filter = document.querySelector(".filter");
-//구조분해 할당
-const [img0, img1, img2] = [
-  {
-    src: "./assets/img/iu_0.jpg",
-    color: ["#0272a4", "#f6a564"],
-  },
-  {
-    src: "./assets/img/iu_1.jpg",
-    color: ["#b6bfc8", "#36595b"],
-  },
-  {
-    src: "./assets/img/iu_2.jpg",
-    color: ["#e58e82", "#6f569f"],
-  },
-];
+
+//앨범커버가 선택됬을때 
+//1. 커버이미지 확대  2. 배경화면이 커버이미지로 바뀜
 //선택된 앨범 커버확인하는 함수
 const clickAlbumCover = (img) => {
   if (img.target.classList.contains("album_cover")) {
     $albumcover_List.forEach((el, i) => {
       if (el.contains(img.target)) {
         $albumcover_List[i].classList.add("play");
+        // changeBackgroundcolor(i)
       } else {
-        $albumcover_List[i].classList.remove("play");
+        $albumcover_List[i].classList.remove("play"); 
       }
     });
   }
@@ -73,11 +63,11 @@ $nextBtn.addEventListener("click", (button) => {
   $albumcover_List.forEach((img, i) => {
     if (img.classList.contains("play")) {
       img.classList.remove("play");
-      if ((i = 1)) {
-        i = 3;
-        $albumcover_List[i - 1].classList.add("play");
+      if ((i < 1)) {
+        i = $albumcover_List;
+        $albumcover_List[i-1].classList.add("play");
       } else {
-        $albumcover_List[i - 1].classList.add("play");
+        $albumcover_List[i-1].classList.add("play");
       }
     }
   });
@@ -97,3 +87,22 @@ $prevBtn.addEventListener("click", (button) => {
 });
 // $prevBtn.addEventListener("click",f );
 //---------------------------------------------------------------------------
+//배경화면
+const $filter = document.querySelector(".filter");
+//play버튼을 누르면 현재 커버이미지를 바탕화면으로 보여주는 함수
+const changeBackgroundImg = (index) => {
+  $filter.classList.add('main')
+  const backgroundImg = document.createElement("img")
+  backgroundImg.setAttribute('src',musicListData[index].src)
+  backgroundImg.classList.add('blur')
+  $filter.appendChild(backgroundImg)  
+}
+
+const changeBackgroundcolor = (index) => {
+  $filter.classList.add('main')
+  const x =$filter.getAttribute("main")
+  console.log(x)
+}
+$playBtn.addEventListener("click",(button)=>{
+  // changeBackgroundImg(index)
+})
