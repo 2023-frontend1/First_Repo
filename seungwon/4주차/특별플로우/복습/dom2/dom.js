@@ -22,6 +22,20 @@ function displayReplies() {
 
 displayReplies();
 
+$addButton.addEventListener("click", () => {
+	let inputTrim = $input.value.trim();
+	mockPost.post.Replies.push({
+		User: {
+			nickName: "내이름은 김삼순",
+		},
+		content: inputTrim,
+	});
+	$input.value = "";
+	console.log(inputTrim);
+	console.log(mockPost);
+	displayReplies();
+});
+
 /* 
     import(참조)한 json data를
     게시글 상세와 댓글창에 나타내고 게시글 객체의 상세 내용은 console.log로 출력해두었습니다
