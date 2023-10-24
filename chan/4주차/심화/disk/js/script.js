@@ -1,4 +1,3 @@
-
 const musicListData = [
   {
     src: "./assets/img/iu_0.jpg",
@@ -33,17 +32,23 @@ const $albumcover_List = Array.from(
   document.querySelectorAll(".list_btn_group > ul > img")
 );
 
-//앨범커버가 선택됬을때 
+//앨범커버가 선택됬을때
 //1. 커버이미지 확대  2. 배경화면이 커버이미지로 바뀜
+
+// 커버이미지 선택시 배경화면 바꿔주는 함수
+const changeBackgroundcolor = (index) => {
+  $filter.classList.add("main");
+  
+};
 //선택된 앨범 커버확인하는 함수
 const clickAlbumCover = (img) => {
   if (img.target.classList.contains("album_cover")) {
     $albumcover_List.forEach((el, i) => {
       if (el.contains(img.target)) {
         $albumcover_List[i].classList.add("play");
-        // changeBackgroundcolor(i)
+        // changeBackgroundcolor(i) 
       } else {
-        $albumcover_List[i].classList.remove("play"); 
+        $albumcover_List[i].classList.remove("play");
       }
     });
   }
@@ -59,31 +64,31 @@ const $prevBtn = document.querySelector(".prev_btn");
 //---------------------------------------------------------------------------
 // $nextBtn.addEventListener("click",f );
 //==> 버튼을 클릭하면 -> 현재 click클래스는 remove하고 -1번째 앨범컵버의 click on
-$nextBtn.addEventListener("click", (button) => {
-  $albumcover_List.forEach((img, i) => {
-    if (img.classList.contains("play")) {
-      img.classList.remove("play");
-      if ((i < 1)) {
-        i = $albumcover_List;
-        $albumcover_List[i-1].classList.add("play");
-      } else {
-        $albumcover_List[i-1].classList.add("play");
-      }
-    }
-  });
-});
 $prevBtn.addEventListener("click", (button) => {
+  let curIdx ;
   $albumcover_List.forEach((img, i) => {
     if (img.classList.contains("play")) {
       img.classList.remove("play");
-      if ((i = $albumcover_List.length)) {
-        i = 0;
-        $albumcover_List[i + 1].classList.add("play");
-      } else {
-        $albumcover_List[i + 1].classList.add("play");
-      }
+      curIdx = i;
     }
   });
+  if (curIdx == 0) {
+    curIdx = $albumcover_List.length;
+  }
+  $albumcover_List[curIdx - 1].classList.add("play");
+});
+$nextBtn.addEventListener("click", (button) => {
+  let curIdx;
+  $albumcover_List.forEach((img, i) => {
+    if (img.classList.contains("play")) {
+      img.classList.remove("play");
+      curIdx = i;
+    }
+  });
+  if (curIdx == ($albumcover_List.length-1)) {
+    curIdx=-1
+  }
+  $albumcover_List[curIdx + 1].classList.add("play");
 });
 // $prevBtn.addEventListener("click",f );
 //---------------------------------------------------------------------------
@@ -91,18 +96,13 @@ $prevBtn.addEventListener("click", (button) => {
 const $filter = document.querySelector(".filter");
 //play버튼을 누르면 현재 커버이미지를 바탕화면으로 보여주는 함수
 const changeBackgroundImg = (index) => {
-  $filter.classList.add('main')
-  const backgroundImg = document.createElement("img")
-  backgroundImg.setAttribute('src',musicListData[index].src)
-  backgroundImg.classList.add('blur')
-  $filter.appendChild(backgroundImg)  
-}
+  $filter.classList.add("main");
+  const backgroundImg = document.createElement("img");
+  backgroundImg.setAttribute("src", musicListData[index].src);
+  backgroundImg.classList.add("blur");
+  $filter.appendChild(backgroundImg);
+};
 
-const changeBackgroundcolor = (index) => {
-  $filter.classList.add('main')
-  const x =$filter.getAttribute("main")
-  console.log(x)
-}
-$playBtn.addEventListener("click",(button)=>{
+$playBtn.addEventListener("click", (button) => {
   // changeBackgroundImg(index)
-})
+});
