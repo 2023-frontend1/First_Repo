@@ -1,28 +1,28 @@
 const users = [
-  {
-    id: 1,
-    name: '김성용',
-    age: 20,
-    height: 190,
-  },
-  {
-    id: 2,
-    name: '이수박',
-    age: 32,
-    height: 185,
-  },
-  {
-    id: 3,
-    name: '오렌지',
-    age: 20,
-    height: 180,
-  },
-  {
-    id: 4,
-    name: '이멜론',
-    age: 28,
-    height: 175,
-  },
+	{
+		id: 1,
+		name: "김성용",
+		age: 20,
+		height: 190,
+	},
+	{
+		id: 2,
+		name: "이수박",
+		age: 32,
+		height: 185,
+	},
+	{
+		id: 3,
+		name: "오렌지",
+		age: 20,
+		height: 180,
+	},
+	{
+		id: 4,
+		name: "이멜론",
+		age: 28,
+		height: 175,
+	},
 ];
 
 /* 
@@ -46,3 +46,19 @@ CRUD 구현하기
 
 문제5. 조회한 유저를 height별 오름 차순으로 정렬하여 조회하기
 */
+// 1
+function addUser(users) {
+	const id = users.length + 1;
+	user.id = id;
+	users.push(user);
+}
+
+//2
+function deleteUser(name) {
+	const index = users.findIndex((user) => user.name === name);
+	if (index !== -1) {
+		users.splice(index, 1); //지우기
+	}
+}
+
+//3
