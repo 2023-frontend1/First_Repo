@@ -43,9 +43,10 @@ const StopDiskRotation = () => {
   if ($div_disk.classList.contains('active'))
     $div_disk.classList.remove('active')
 }
-// 배경 화면 수정
-const ChangeMainBackGround = (changeColorsArr) => {
+// 배경 화면 수정 & disk 내부의 원판 색상을 변경
+const ChangePageTheme = (changeColorsArr) => {
   $main.style.background = `linear-gradient(120deg, ${changeColorsArr[0]}, ${changeColorsArr[1]})`
+  $div_disk_inner.style.backgroundColor = changeColorsArr[0]
 }
 // html tag 에 내려가거나 올라가는 애니메이션 설정
 const SetUpOrDownAnimToTag = (tag, animationName) => {
@@ -60,10 +61,6 @@ const LoadCoverImageToFilter = (imgSrc) => {
   $div_filter.style.backgroundRepeat = 'no-repeat'
   $div_filter.style.backgroundPosition = 'center'
   $div_filter.style.backgroundSize = '100% 100%'
-}
-// disk 내부의 원판 색상을 변경
-const ChangeDiskColor = (color) => {
-  $div_disk_inner.style.backgroundColor = color
 }
 // 앨벌 리스트에 앨범 추가
 const InsertAlbumImgIntoUl = (imgSrc) => {
@@ -111,8 +108,7 @@ $button_prev.addEventListener('click', () => {
   StopDiskRotation()
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 감소
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
-  ChangeMainBackGround(musicListData[curMusicIndex].color)
-  ChangeDiskColor(musicListData[curMusicIndex].color[0])
+  ChangePageTheme(musicListData[curMusicIndex].color)
   OnHighlightEffectForAlbumImg(curMusicIndex)
 })
 
@@ -121,8 +117,7 @@ $button_next.addEventListener('click', () => {
   StopDiskRotation()
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 증가
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
-  ChangeMainBackGround(musicListData[curMusicIndex].color)
-  ChangeDiskColor(musicListData[curMusicIndex].color[0])
+  ChangePageTheme(musicListData[curMusicIndex].color)
   OnHighlightEffectForAlbumImg(curMusicIndex)
 })
 /* play 버튼을 눌렀을 경우 */
@@ -142,6 +137,5 @@ $ul.addEventListener('click', (e) => {
   if (clickedAlbumIdx === -1) return
   curMusicIndex = clickedAlbumIdx
   OnHighlightEffectForAlbumImg(curMusicIndex)
-  ChangeMainBackGround(musicListData[curMusicIndex].color)
-  ChangeDiskColor(musicListData[curMusicIndex].color[0])
+  ChangePageTheme(musicListData[curMusicIndex].color)
 })
