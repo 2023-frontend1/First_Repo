@@ -80,12 +80,21 @@ const InsertAlbumImgIntoUl = (imgSrc) => {
   $ul.appendChild($new_li)
 }
 
+const OnHighlightEffectForAlbumImg = (imgIdx) => {
+  const $li_group = Array.from($ul.querySelectorAll('li'))
+  $li_group.forEach((li) => {
+    li.firstChild.classList.remove('play')
+  })
+  $li_group[imgIdx].firstChild.classList.add('play')
+}
+
 /* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
 addEventListener('load', () => {
   curMusicIndex = 0
   musicListData.forEach((val) => {
     InsertAlbumImgIntoUl(val.src)
   })
+  OnHighlightEffectForAlbumImg(curMusicIndex)
 })
 
 /* prev 버튼을 눌렀을 경우 */
@@ -95,6 +104,7 @@ $button_prev.addEventListener('click', () => {
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
   ChangeMainBackGround(musicListData[curMusicIndex].color)
   ChangeDiskColor(musicListData[curMusicIndex].color[0])
+  OnHighlightEffectForAlbumImg(curMusicIndex)
 })
 
 /* next 버튼을 눌렀을 경우 */
@@ -104,6 +114,7 @@ $button_next.addEventListener('click', () => {
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
   ChangeMainBackGround(musicListData[curMusicIndex].color)
   ChangeDiskColor(musicListData[curMusicIndex].color[0])
+  OnHighlightEffectForAlbumImg(curMusicIndex)
 })
 /* play 버튼을 눌렀을 경우 */
 $button_play.addEventListener('click', () => {
