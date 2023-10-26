@@ -20,6 +20,8 @@ const $div_filter = document.querySelector('div.filter')
 const $div_disk = document.querySelector('div.disk')
 const $div_disk_inner = document.querySelector('div.disk_inner')
 
+const $ul = document.querySelector('ul')
+
 const $div_list_btn_group = document.querySelector('div.list_btn_group')
 const $button_list_btn_group = $div_list_btn_group.querySelectorAll('button')
 const $button_prev = $button_list_btn_group[0]
@@ -63,9 +65,28 @@ const LoadCoverImageToFilter = (imgSrc) => {
 const ChangeDiskColor = (color) => {
   $div_disk_inner.style.backgroundColor = color
 }
+// 앨벌 리스트에 앨범 추가
+const InsertAlbumImgIntoUl = (imgSrc) => {
+  const $new_li = document.createElement('li')
+  $new_li.style.width = '100%'
+  $new_li.style.height = '100%'
+  $new_li.style.display = 'flex'
+  $new_li.style.justifyContent = 'center'
+  $new_li.style.alignItems = 'center'
 
-/* 첫 로드시 */
-addEventListener('load', () => {})
+  const $new_img = document.createElement('img')
+  $new_img.src = imgSrc
+  $new_li.appendChild($new_img)
+  $ul.appendChild($new_li)
+}
+
+/* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
+addEventListener('load', () => {
+  curMusicIndex = 0
+  musicListData.forEach((val) => {
+    InsertAlbumImgIntoUl(val.src)
+  })
+})
 
 /* prev 버튼을 눌렀을 경우 */
 $button_prev.addEventListener('click', () => {
