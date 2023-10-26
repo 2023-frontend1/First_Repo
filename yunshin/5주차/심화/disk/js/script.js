@@ -1,0 +1,98 @@
+const musicListData = [
+  {
+    src: './assets/image/iu_0.jpg',
+    color: ['#0272a4', '#f6a564'],
+  },
+  {
+    src: './assets/image/iu_1.jpg',
+    color: ['#b6bfc8', '#36595b'],
+  },
+  {
+    src: './assets/image/iu_2.jpg',
+    color: ['#e58e82', '#6f569f'],
+  },
+]
+
+const $main = document.querySelector('main')
+
+const $div_filter = document.querySelector('div.filter')
+
+const $div_disk = document.querySelector('div.disk')
+const $div_disk_inner = document.querySelector('div.disk_inner')
+
+const $div_list_btn_group = document.querySelector('div.list_btn_group')
+const $button_list_btn_group = $div_list_btn_group.querySelectorAll('button')
+const $button_prev = $button_list_btn_group[0]
+const $button_next = $button_list_btn_group[1]
+
+const $div_play_btn_group = document.querySelector('div.play_btn_group')
+const $button_play_btn_group = $div_play_btn_group.querySelectorAll('button')
+const $button_play = $button_play_btn_group[0]
+const $button_stop = $button_play_btn_group[1]
+
+let curMusicIndex = 0
+
+// disk 가 돌아가지 않으면 돌려버림.
+const StartDiskRotation = () => {
+  if (!$div_disk.classList.contains('active')) $div_disk.classList.add('active')
+}
+// disk가 돌아가고 있으면 멈추기.
+const StopDiskRotation = () => {
+  if ($div_disk.classList.contains('active'))
+    $div_disk.classList.remove('active')
+}
+// 배경 화면 수정
+const ChangeMainBackGround = (changeColorsArr) => {
+  $main.style.background = `linear-gradient(120deg, ${changeColorsArr[0]}, ${changeColorsArr[1]})`
+}
+// html tag 에 내려가는 애니메이션 설정
+const SetDownAnimToTag = (tag) => {
+  tag.style.animationName = 'upToDown'
+  tag.style.animationDuration = '0.5s'
+  tag.style.animationTimingFunction = 'linear'
+  tag.style.animationFillMode = 'forwards'
+}
+// html tag 에 올라가는 애니메이션 설정
+const SetUpAnimToTag = (tag) => {
+  tag.style.animationName = 'downToUp'
+  tag.style.animationDuration = '0.5s'
+  tag.style.animationTimingFunction = 'linear'
+  tag.style.animationFillMode = 'forwards'
+}
+// 음악 시작시, cover Image 를 로드
+const loadCoverImageToFilter = () => {
+  $div_filter.style.backgroundImage = `url(${musicListData[0].src})`
+  $div_filter.style.backgroundRepeat = 'no-repeat'
+  $div_filter.style.backgroundPosition = 'center'
+  $div_filter.style.backgroundSize = '100% 100%'
+}
+
+/* 첫 로드시 */
+addEventListener('load', () => {})
+
+/* prev 버튼을 눌렀을 경우 */
+$button_prev.addEventListener('click', () => {
+  StopDiskRotation()
+  // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 감소
+  if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
+  ChangeMainBackGround(musicListData[curMusicIndex].color)
+})
+
+/* next 버튼을 눌렀을 경우 */
+$button_next.addEventListener('click', () => {
+  StopDiskRotation()
+  // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 증가
+  if (++curMusicIndex === musicListData.length) curMusicIndex = 0
+  ChangeMainBackGround(musicListData[curMusicIndex].color)
+})
+/* play 버튼을 눌렀을 경우 */
+$button_play.addEventListener('click', () => {
+  StartDiskRotation()
+  loadCoverImageToFilter()
+  SetDownAnimToTag($div_filter)
+})
+/* stop 버튼을 눌렀을 경우 */
+$button_stop.addEventListener('click', () => {
+  StopDiskRotation()
+  SetUpAnimToTag($div_filter)
+})
