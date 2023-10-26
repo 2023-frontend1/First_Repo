@@ -45,26 +45,23 @@ const StopDiskRotation = () => {
 const ChangeMainBackGround = (changeColorsArr) => {
   $main.style.background = `linear-gradient(120deg, ${changeColorsArr[0]}, ${changeColorsArr[1]})`
 }
-// html tag 에 내려가는 애니메이션 설정
-const SetDownAnimToTag = (tag) => {
-  tag.style.animationName = 'upToDown'
-  tag.style.animationDuration = '0.5s'
-  tag.style.animationTimingFunction = 'linear'
-  tag.style.animationFillMode = 'forwards'
-}
-// html tag 에 올라가는 애니메이션 설정
-const SetUpAnimToTag = (tag) => {
-  tag.style.animationName = 'downToUp'
+// html tag 에 내려가거나 올라가는 애니메이션 설정
+const SetUpOrDownAnimToTag = (tag, animationName) => {
+  tag.style.animationName = animationName
   tag.style.animationDuration = '0.5s'
   tag.style.animationTimingFunction = 'linear'
   tag.style.animationFillMode = 'forwards'
 }
 // 음악 시작시, cover Image 를 로드
-const loadCoverImageToFilter = () => {
-  $div_filter.style.backgroundImage = `url(${musicListData[0].src})`
+const LoadCoverImageToFilter = (imgSrc) => {
+  $div_filter.style.backgroundImage = `url(${imgSrc})`
   $div_filter.style.backgroundRepeat = 'no-repeat'
   $div_filter.style.backgroundPosition = 'center'
   $div_filter.style.backgroundSize = '100% 100%'
+}
+// disk 내부의 원판 색상을 변경
+const ChangeDiskColor = (color) => {
+  $div_disk_inner.style.backgroundColor = color
 }
 
 /* 첫 로드시 */
@@ -76,6 +73,7 @@ $button_prev.addEventListener('click', () => {
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 감소
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
   ChangeMainBackGround(musicListData[curMusicIndex].color)
+  ChangeDiskColor(musicListData[curMusicIndex].color[0])
 })
 
 /* next 버튼을 눌렀을 경우 */
@@ -84,15 +82,16 @@ $button_next.addEventListener('click', () => {
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 증가
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
   ChangeMainBackGround(musicListData[curMusicIndex].color)
+  ChangeDiskColor(musicListData[curMusicIndex].color[0])
 })
 /* play 버튼을 눌렀을 경우 */
 $button_play.addEventListener('click', () => {
   StartDiskRotation()
-  loadCoverImageToFilter()
-  SetDownAnimToTag($div_filter)
+  LoadCoverImageToFilter(musicListData[curMusicIndex].src)
+  SetUpOrDownAnimToTag($div_filter, 'upToDown')
 })
 /* stop 버튼을 눌렀을 경우 */
 $button_stop.addEventListener('click', () => {
   StopDiskRotation()
-  SetUpAnimToTag($div_filter)
+  SetUpOrDownAnimToTag($div_filter, 'downToUp')
 })
