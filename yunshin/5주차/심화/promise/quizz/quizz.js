@@ -1,11 +1,16 @@
-const 기초 = () => {
-  const promise = new Promise((resolve, reject) =>
+const GetDataV1 = () => {
+  const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       let data = 1
-      if (data || data === 0) resolve(data)
+      if (data || data == 0) resolve(data)
       reject('NO_DATA')
     }, 700)
-  )
+  })
+  return promise
+}
+
+const 기초 = () => {
+  const promise = GetDataV1()
   console.log('min size')
   promise
     .then((val) => {
@@ -18,15 +23,20 @@ const 기초 = () => {
     })
 }
 
+const GetDataV2 = () => {
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      let data
+      resolve(data)
+    }, 700)
+  })
+  return promise
+}
+
 const 심화 = async () => {
   console.log('min size')
   try {
-    let val = await new Promise((resolve) =>
-      setTimeout(() => {
-        let data = 1
-        resolve(data)
-      }, 700)
-    )
+    let val = await GetDataV2()
     if (val !== 0 && !val) throw Error('NO_DATA')
     console.log('...0.7초 후')
     console.log('max size')
@@ -37,4 +47,4 @@ const 심화 = async () => {
 }
 
 // 기초()
-심화()
+// 심화()
