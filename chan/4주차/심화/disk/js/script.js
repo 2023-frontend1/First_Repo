@@ -165,6 +165,7 @@ $stopBtn.addEventListener("click", (button) => {
   $disk.classList.remove("active");
   $filter.classList.remove("blur");
   removeBackgroundImg();
+  checkTargetIndex();
   changeDiskInnerColor(targetIndex);
 });
 //---------------------------------------------------------------------------
