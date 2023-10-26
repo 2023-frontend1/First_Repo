@@ -19,7 +19,7 @@ const renderMusicList = () => {
   musicListData.forEach((data) => {
     const $albumCover_img = document.createElement("img");
     $albumCover_img.setAttribute("src", data.src);
-    $albumCover_img.classList.add("album_cover" );
+    $albumCover_img.classList.add("album_cover");
 
     $imageList.appendChild($albumCover_img);
   });
@@ -41,8 +41,19 @@ const $playBtn = document.querySelector(".play_btn");
 const $stopBtn = document.querySelector(".stop_btn");
 const $nextBtn = document.querySelector(".next_btn");
 const $prevBtn = document.querySelector(".prev_btn");
+
+let targetIndex;
 //---------------------------------------------------------------------------
 //--------------------------함수 정의------------------------------------
+//현재 선택된 앨범 index값 가져오는 함수
+const checkTargetIndex = () => {
+  $albumcover_List.forEach((el, i) => {
+    if (el.classList.contains("play")) {
+      targetIndex = i;
+    }
+  });
+  return targetIndex;
+};
 // 커버이미지 선택시 배경화면 바꿔주는 함수
 const changeBackgroundcolor = (index) => {
   $main.style.background = `linear-gradient(120deg, ${musicListData[index].color[0]},  ${musicListData[index].color[1]})`;
@@ -50,44 +61,39 @@ const changeBackgroundcolor = (index) => {
 
 // 커버이미지 선택시 inner_disk색상 변경해주는 함수
 const changeDiskInnerColor = (index) => {
-  if($filter.classList.contains('blur')){
-    return 0
+  if ($filter.classList.contains("blur")) {
+    return 0;
   }
-    $disk_inner.setAttribute(
-      "style",
-      `background-color : ${musicListData[index].color[0]} `
-    );
-  }
-  
+  $disk_inner.setAttribute(
+    "style",
+    `background-color : ${musicListData[index].color[0]} `
+  );
+};
+
 //play버튼을 누르면 현재 커버이미지를 바탕화면으로 보여주는 함수
 const changeBackgroundImg = () => {
-  let pointIndex;
-  $albumcover_List.forEach((el, i) => {
-    if (el.classList.contains("play")) {
-      pointIndex = i;
-    }
-  });
-  $filter.style.animation = 'none'
-  void $filter.offsetWidth
-  $filter.style.animation = 'null'
+  checkTargetIndex();
+  $filter.style.animation = "none";
+  void $filter.offsetWidth;
+  $filter.style.animation = "null";
 
   $filter.classList.add("blur");
-  $filter.style.backgroundImage = `url(${musicListData[pointIndex].src}`
-  $filter.style.backgroundRepeat = 'no-repeat'
-  $filter.style.backgroundPosition = 'center'
-  $filter.style.backgroundSize = '100% 100%'
-  $filter.style.animation = 'upToDown'
-  $filter.style.animationDuration = '0.5s'
-  $filter.style.animationTimingFunction = 'linear'
-  $filter.style.animationFillMode = 'forwards'
+  $filter.style.backgroundImage = `url(${musicListData[targetIndex].src}`;
+  $filter.style.backgroundRepeat = "no-repeat";
+  $filter.style.backgroundPosition = "center";
+  $filter.style.backgroundSize = "100% 100%";
+  $filter.style.animation = "upToDown";
+  $filter.style.animationDuration = "0.5s";
+  $filter.style.animationTimingFunction = "linear";
+  $filter.style.animationFillMode = "forwards";
 };
 
 //stop버튼 누르면 커버이미지 삭제하는 함수
 const removeBackgroundImg = () => {
-  $filter.style.animation = 'downToUp'
-  $filter.style.animationDuration = '0.5s'
-  $filter.style.animationTimingFunction = 'linear'
-  $filter.style.animationFillMode = 'forwards'
+  $filter.style.animation = "downToUp";
+  $filter.style.animationDuration = "0.5s";
+  $filter.style.animationTimingFunction = "linear";
+  $filter.style.animationFillMode = "forwards";
 };
 //선택된 앨범 커버확인하는 함수
 const clickAlbumCover = (img) => {
@@ -123,6 +129,7 @@ $prevBtn.addEventListener("click", (button) => {
   changeBackgroundcolor(curIdx - 1);
   changeDiskInnerColor(curIdx - 1);
   $albumcover_List[curIdx - 1].classList.add("play");
+  targetIndex--;
 });
 
 //nextBtn click event
@@ -140,25 +147,24 @@ $nextBtn.addEventListener("click", (button) => {
   changeBackgroundcolor(curIdx + 1);
   changeDiskInnerColor(curIdx + 1);
   $albumcover_List[curIdx + 1].classList.add("play");
+  targetIndex++;
 });
 
 //palyBtn click event
 $playBtn.addEventListener("click", (button) => {
   $disk.classList.add("active");
   changeBackgroundImg();
+  $disk_inner.setAttribute(
+    "style",
+    `background-color : ${musicListData[targetIndex].color[0]} `
+  );
 });
 
 //stopBtn click event
 $stopBtn.addEventListener("click", (button) => {
   $disk.classList.remove("active");
-  $filter.classList.remove("blur")
-  removeBackgroundImg()
-  let pointIndex;
-  $albumcover_List.forEach((el, i) => {
-    if (el.classList.contains("play")) {
-      pointIndex = i;
-    }
-  });
-  changeDiskInnerColor(pointIndex)
+  $filter.classList.remove("blur");
+  removeBackgroundImg();
+  changeDiskInnerColor(targetIndex);
 });
 //---------------------------------------------------------------------------
