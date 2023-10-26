@@ -79,13 +79,22 @@ const InsertAlbumImgIntoUl = (imgSrc) => {
   $new_li.appendChild($new_img)
   $ul.appendChild($new_li)
 }
-
+// Album 이미지에 하이라이트 효과 부여
 const OnHighlightEffectForAlbumImg = (imgIdx) => {
   const $li_group = Array.from($ul.querySelectorAll('li'))
   $li_group.forEach((li) => {
     li.firstChild.classList.remove('play')
   })
   $li_group[imgIdx].firstChild.classList.add('play')
+}
+// 클릭한 album 의 index 를 반환
+const GetClickedAlbumIdx = (clickedItem) => {
+  const $li_group = Array.from($ul.querySelectorAll('li'))
+  let result = -1
+  $li_group.forEach((li, idx) => {
+    if (li.firstChild === clickedItem) result = idx
+  })
+  return result
 }
 
 /* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
@@ -126,4 +135,13 @@ $button_play.addEventListener('click', () => {
 $button_stop.addEventListener('click', () => {
   StopDiskRotation()
   SetUpOrDownAnimToTag($div_filter, 'downToUp')
+})
+/* 앨범 이미지를 클릭한 경우 */
+$ul.addEventListener('click', (e) => {
+  const clickedAlbumIdx = GetClickedAlbumIdx(e.target)
+  if (clickedAlbumIdx === -1) return
+  curMusicIndex = clickedAlbumIdx
+  OnHighlightEffectForAlbumImg(curMusicIndex)
+  ChangeMainBackGround(musicListData[curMusicIndex].color)
+  ChangeDiskColor(musicListData[curMusicIndex].color[0])
 })
