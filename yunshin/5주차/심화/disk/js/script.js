@@ -93,6 +93,11 @@ const GetClickedAlbumIdx = (clickedItem) => {
   })
   return result
 }
+// disk 초기화, 재생 중인 음악 중지 & 배경화면에 앨범 이미지 위로 올리기
+const OffMusic = () => {
+  StopDiskRotation()
+  SetUpOrDownAnimToTag($div_filter, 'downToUp')
+}
 
 /* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
 addEventListener('load', () => {
@@ -105,7 +110,7 @@ addEventListener('load', () => {
 
 /* prev 버튼을 눌렀을 경우 */
 $button_prev.addEventListener('click', () => {
-  StopDiskRotation()
+  OffMusic()
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 감소
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
   ChangePageTheme(musicListData[curMusicIndex].color)
@@ -114,7 +119,7 @@ $button_prev.addEventListener('click', () => {
 
 /* next 버튼을 눌렀을 경우 */
 $button_next.addEventListener('click', () => {
-  StopDiskRotation()
+  OffMusic()
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 증가
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
   ChangePageTheme(musicListData[curMusicIndex].color)
@@ -127,14 +132,10 @@ $button_play.addEventListener('click', () => {
   SetUpOrDownAnimToTag($div_filter, 'upToDown')
 })
 /* stop 버튼을 눌렀을 경우 */
-$button_stop.addEventListener('click', () => {
-  StopDiskRotation()
-  SetUpOrDownAnimToTag($div_filter, 'downToUp')
-})
+$button_stop.addEventListener('click', OffMusic)
 /* 앨범 이미지를 클릭한 경우 */
 $ul.addEventListener('click', (e) => {
-  StopDiskRotation()
-  SetUpOrDownAnimToTag($div_filter, 'downToUp')
+  OffMusic()
   const clickedAlbumIdx = GetClickedAlbumIdx(e.target)
   if (clickedAlbumIdx === -1) return
   curMusicIndex = clickedAlbumIdx
