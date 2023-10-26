@@ -133,6 +133,8 @@ $button_stop.addEventListener('click', () => {
 })
 /* 앨범 이미지를 클릭한 경우 */
 $ul.addEventListener('click', (e) => {
+  StopDiskRotation()
+  SetUpOrDownAnimToTag($div_filter, 'downToUp')
   const clickedAlbumIdx = GetClickedAlbumIdx(e.target)
   if (clickedAlbumIdx === -1) return
   curMusicIndex = clickedAlbumIdx
