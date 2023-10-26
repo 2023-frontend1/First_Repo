@@ -19,45 +19,96 @@ const renderMusicList = () => {
   musicListData.forEach((data) => {
     const $albumCover_img = document.createElement("img");
     $albumCover_img.setAttribute("src", data.src);
-    $albumCover_img.classList.add("album_cover");
+    $albumCover_img.classList.add("album_cover" );
 
     $imageList.appendChild($albumCover_img);
   });
 };
 window.onload = renderMusicList();
-//musicListData를 순회하며 src를 <img>에넣어주면서 ul태그의 자식들로 넣어주며 rendering
 //---------------------------------------------------------------------------
+//--------------------------변수 정의------------------------------------
 const $albumcover_List = Array.from(
   document.querySelectorAll(".list_btn_group > ul > img")
 );
-const $main = document.querySelector('main')
-const $filter = document.querySelector('.filter')
+
+const $main = document.querySelector("main");
+const $filter = document.querySelector(".filter");
+
+const $disk = document.querySelector(".disk");
+const $disk_inner = document.querySelector(".disk_inner");
+
+const $playBtn = document.querySelector(".play_btn");
+const $stopBtn = document.querySelector(".stop_btn");
+const $nextBtn = document.querySelector(".next_btn");
+const $prevBtn = document.querySelector(".prev_btn");
+//---------------------------------------------------------------------------
+//--------------------------함수 정의------------------------------------
 // 커버이미지 선택시 배경화면 바꿔주는 함수
 const changeBackgroundcolor = (index) => {
-  $main.style.background = `linear-gradient(120deg, ${musicListData[index].color[0]},  ${musicListData[index].color[1]})`
-}
-//선택된 앨범 커버확인하는 함수 
+  $main.style.background = `linear-gradient(120deg, ${musicListData[index].color[0]},  ${musicListData[index].color[1]})`;
+};
+
+// 커버이미지 선택시 inner_disk색상 변경해주는 함수
+const changeDiskInnerColor = (index) => {
+  if($filter.classList.contains('blur')){
+    return 0
+  }
+    $disk_inner.setAttribute(
+      "style",
+      `background-color : ${musicListData[index].color[0]} `
+    );
+  }
+  
+//play버튼을 누르면 현재 커버이미지를 바탕화면으로 보여주는 함수
+const changeBackgroundImg = () => {
+  let pointIndex;
+  $albumcover_List.forEach((el, i) => {
+    if (el.classList.contains("play")) {
+      pointIndex = i;
+    }
+  });
+  $filter.style.animation = 'none'
+  void $filter.offsetWidth
+  $filter.style.animation = 'null'
+
+  $filter.classList.add("blur");
+  $filter.style.backgroundImage = `url(${musicListData[pointIndex].src}`
+  $filter.style.backgroundRepeat = 'no-repeat'
+  $filter.style.backgroundPosition = 'center'
+  $filter.style.backgroundSize = '100% 100%'
+  $filter.style.animation = 'upToDown'
+  $filter.style.animationDuration = '0.5s'
+  $filter.style.animationTimingFunction = 'linear'
+  $filter.style.animationFillMode = 'forwards'
+};
+
+//stop버튼 누르면 커버이미지 삭제하는 함수
+const removeBackgroundImg = () => {
+  $filter.style.animation = 'downToUp'
+  $filter.style.animationDuration = '0.5s'
+  $filter.style.animationTimingFunction = 'linear'
+  $filter.style.animationFillMode = 'forwards'
+};
+//선택된 앨범 커버확인하는 함수
 const clickAlbumCover = (img) => {
   if (img.target.classList.contains("album_cover")) {
     $albumcover_List.forEach((el, i) => {
       if (el.contains(img.target)) {
         $albumcover_List[i].classList.add("play");
-        changeBackgroundcolor(i)
+        changeBackgroundcolor(i);
+        changeDiskInnerColor(i);
       } else {
         $albumcover_List[i].classList.remove("play");
       }
     });
   }
 };
+//---------------------------------------------------------------------------
+//--------------------------버튼이벤트 정의------------------------------------
 //클릭된 앨범커버 사진 확대해주는 event
 $imageList.addEventListener("click", clickAlbumCover);
-//---------------------------------------------------------------------------
-const $playBtn = document.querySelector(".play_btn");
-const $stopBtn = document.querySelector(".stop_btn");
-const $nextBtn = document.querySelector(".next_btn");
-const $prevBtn = document.querySelector(".prev_btn");
-//---------------------------------------------------------------------------
-//prevBtn click event 
+
+//prevBtn click event
 $prevBtn.addEventListener("click", (button) => {
   let curIdx;
   $albumcover_List.forEach((img, i) => {
@@ -69,10 +120,12 @@ $prevBtn.addEventListener("click", (button) => {
   if (curIdx == 0) {
     curIdx = $albumcover_List.length;
   }
-  changeBackgroundcolor(curIdx-1)
+  changeBackgroundcolor(curIdx - 1);
+  changeDiskInnerColor(curIdx - 1);
   $albumcover_List[curIdx - 1].classList.add("play");
 });
-//nextBtn click event 
+
+//nextBtn click event
 $nextBtn.addEventListener("click", (button) => {
   let curIdx;
   $albumcover_List.forEach((img, i) => {
@@ -84,20 +137,28 @@ $nextBtn.addEventListener("click", (button) => {
   if (curIdx == $albumcover_List.length - 1) {
     curIdx = -1;
   }
-  changeBackgroundcolor(curIdx+1)
+  changeBackgroundcolor(curIdx + 1);
+  changeDiskInnerColor(curIdx + 1);
   $albumcover_List[curIdx + 1].classList.add("play");
 });
-//---------------------------------------------------------------------------
 
-//play버튼을 누르면 현재 커버이미지를 바탕화면으로 보여주는 함수
-const changeBackgroundImg = (index) => {
-  $filter.classList.add("main");
-  const backgroundImg = document.createElement("img");
-  backgroundImg.setAttribute("src", musicListData[index].src);
-  backgroundImg.classList.add("blur");
-  $filter.appendChild(backgroundImg);
-};
-
+//palyBtn click event
 $playBtn.addEventListener("click", (button) => {
-  // changeBackgroundImg(index)
+  $disk.classList.add("active");
+  changeBackgroundImg();
 });
+
+//stopBtn click event
+$stopBtn.addEventListener("click", (button) => {
+  $disk.classList.remove("active");
+  $filter.classList.remove("blur")
+  removeBackgroundImg()
+  let pointIndex;
+  $albumcover_List.forEach((el, i) => {
+    if (el.classList.contains("play")) {
+      pointIndex = i;
+    }
+  });
+  changeDiskInnerColor(pointIndex)
+});
+//---------------------------------------------------------------------------
