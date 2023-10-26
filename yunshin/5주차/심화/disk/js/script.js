@@ -33,6 +33,7 @@ const $button_play = $button_play_btn_group[0]
 const $button_stop = $button_play_btn_group[1]
 
 let curMusicIndex = 0
+let isMusicPlaying = false
 
 // disk 가 돌아가지 않으면 돌려버림.
 const StartDiskRotation = () => {
@@ -103,11 +104,11 @@ const GetClickedAlbumIdx = (clickedItem) => {
   })
   return result
 }
-// disk 초기화: 재생 중인 음악 중지 & 배경화면에 앨범 이미지 위로 올리기
-const OffMusic = () => {
-  StopDiskRotation()
-  SetUpOrDownAnimToTag($div_filter, 'downToUp')
+// 음악 재생 여부에 따라, disk 내부의 색상이 바꿀지 판단
+const ChangeDiskColorDependOnMusicState = () => {
+  if (!isMusicPlaying) ChangeDiskColor(musicListData[curMusicIndex].color[0])
 }
+
 /* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
 addEventListener('load', () => {
   curMusicIndex = 0
@@ -116,13 +117,13 @@ addEventListener('load', () => {
   })
   OnHighlightEffectForAlbumImg(curMusicIndex)
 })
-
 /* prev 버튼을 눌렀을 경우 */
 $button_prev.addEventListener('click', () => {
   // 현재 '실행' 혹은 '실행 대기 중' 인 음악 index 감소
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
+  ChangeDiskColorDependOnMusicState()
 })
 /* next 버튼을 눌렀을 경우 */
 $button_next.addEventListener('click', () => {
@@ -130,16 +131,22 @@ $button_next.addEventListener('click', () => {
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
+  ChangeDiskColorDependOnMusicState()
 })
 /* play 버튼을 눌렀을 경우 */
 $button_play.addEventListener('click', () => {
+  isMusicPlaying = true
   StartDiskRotation()
   LoadCoverImageToFilter(musicListData[curMusicIndex].src)
   SetUpOrDownAnimToTag($div_filter, 'upToDown')
   ChangeDiskColor(musicListData[curMusicIndex].color[0])
 })
 /* stop 버튼을 눌렀을 경우 */
-$button_stop.addEventListener('click', OffMusic)
+$button_stop.addEventListener('click', () => {
+  isMusicPlaying = false
+  StopDiskRotation()
+  SetUpOrDownAnimToTag($div_filter, 'downToUp')
+})
 /* 앨범 이미지를 클릭한 경우 */
 $ul.addEventListener('click', (e) => {
   const clickedAlbumIdx = GetClickedAlbumIdx(e.target)
@@ -147,4 +154,5 @@ $ul.addEventListener('click', (e) => {
   curMusicIndex = clickedAlbumIdx
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
+  ChangeDiskColorDependOnMusicState()
 })
