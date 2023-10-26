@@ -42,7 +42,7 @@ const $stopBtn = document.querySelector(".stop_btn");
 const $nextBtn = document.querySelector(".next_btn");
 const $prevBtn = document.querySelector(".prev_btn");
 
-let targetIndex;
+let targetIndex = -1;
 //---------------------------------------------------------------------------
 //--------------------------함수 정의------------------------------------
 //현재 선택된 앨범 index값 가져오는 함수
@@ -152,6 +152,8 @@ $nextBtn.addEventListener("click", (button) => {
 
 //palyBtn click event
 $playBtn.addEventListener("click", (button) => {
+  checkTargetIndex()
+  if(targetIndex === -1){return 0}
   $disk.classList.add("active");
   changeBackgroundImg();
   $disk_inner.setAttribute(
