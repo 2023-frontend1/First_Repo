@@ -1,6 +1,6 @@
 # 문제1.
 
-<div align = "center>
+<div align = "center">
 
 ![disk](https://github.com/2023-frontend1/First_Repo/assets/50646145/c18faf82-7ec5-48cf-a035-524f691d9be5)
 
