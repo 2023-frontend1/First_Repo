@@ -1,5 +1,11 @@
 # 문제1.
 
+<div align = "center>
+
+![disk](https://github.com/2023-frontend1/First_Repo/assets/50646145/c18faf82-7ec5-48cf-a035-524f691d9be5)
+
+</div>
+
 디스크 문제 구현하기. 필요한 html, css, animation은 모두 구현하였으나, 혹 본인 재량 하에 추가하고 싶은 css와 animation이 있으면 추가해두시면 됩니다.
 
 ## 요구사항
@@ -30,4 +36,10 @@
 </br>
 </br>
 
-![disk](https://github.com/2023-frontend1/First_Repo/assets/50646145/c18faf82-7ec5-48cf-a035-524f691d9be5)
+### 풀이 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/5주차/심화/disk/js/script.js) )
+
+<div align = "center">
+
+![q_diskj](https://github.com/2023-frontend1/First_Repo/assets/50646145/cc2ec779-a076-4735-b914-5ff571ede557)
+
+</div>
