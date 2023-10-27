@@ -1,10 +1,9 @@
 const Storage = () => {
   // data 변수에 { promise 갯수 - 1 } 이상을 적어야 정상적으로 실행된다.
-  let data = 1
+  let data = 0
   const DrawOne = () => {
     if (data < 0) return
-    data -= 1
-    return data
+    return data--
   }
   return { DrawOne }
 }
@@ -48,28 +47,28 @@ const 심화 = () => {
       response[2].value ? response[2].value.data : -1,
     ]
 
-    if (statusList[0] === 'fulfilled' && dataList[0] != 1) {
+    if (statusList[0] === 'fulfilled' && dataList[0] !== -1) {
       console.log('비동기 요청 ' + idList[0])
     } else {
       console.log('비동기 요청 ' + idList[0] + ' 호출 실패')
     }
 
-    if (statusList[1] === 'fulfilled' && dataList[1] != 1) {
+    if (statusList[1] === 'fulfilled' && dataList[1] !== -1) {
       console.log('비동기 요청 ' + idList[1])
     } else {
       console.log('비동기 요청 ' + idList[1] + ' 호출 실패')
     }
 
-    if (statusList[2] === 'fulfilled' && dataList[2] != 1) {
+    if (statusList[2] === 'fulfilled' && dataList[2] !== -1) {
       console.log('비동기 요청 ' + idList[2])
     } else {
       console.log('비동기 요청 ' + idList[2] + ' 호출 실패')
     }
 
     if (
-      statusList[0] !== 'rejected' &&
-      statusList[1] !== 'rejected' &&
-      statusList[2] !== 'rejected'
+      statusList[0] === 'rejected' &&
+      statusList[1] === 'rejected' &&
+      statusList[2] === 'rejected'
     ) {
       console.log('결과값을 가지고 오는데 실패하였습니다.')
     } else {
