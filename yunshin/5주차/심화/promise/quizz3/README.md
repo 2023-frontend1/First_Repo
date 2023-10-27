@@ -42,3 +42,7 @@ promise1().then((res) => {
   promise2().then(() => promise3())
 })
 ```
+
+### 풀이 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/5주차/심화/promise/quizz3/quizz3.js) )
+
+![quizz3](https://github.com/2023-frontend1/First_Repo/assets/50646145/0c0a3928-6e0b-4234-b443-d68c8a4fbf7f)

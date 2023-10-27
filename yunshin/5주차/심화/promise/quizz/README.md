@@ -20,4 +20,8 @@
 ## 3. 조건
 
 - 기초. promise를 사용하여 구현할 것
-- 심화. pomise의 then catch가 아닌 async await을 사용할 것
+- 심화. promise의 then catch가 아닌 async await을 사용할 것
+
+### 풀이 ([SourceCode 🔗](https://github.com/2023-frontend1/First_Repo/blob/yunshin/yunshin/5주차/심화/promise/quizz/quizz.js))
+
+<img width="341" alt="quizz1" src="https://github.com/2023-frontend1/First_Repo/assets/50646145/7bcd2cf8-d127-4f89-b845-1a743e92d9f6">
