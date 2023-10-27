@@ -105,8 +105,8 @@ const GetClickedAlbumIdx = (clickedItem) => {
   return result
 }
 // 음악 재생 여부에 따라, disk 내부의 색상이 바꿀지 판단
-const ChangeDiskColorDependOnMusicState = () => {
-  if (!isMusicPlaying) ChangeDiskColor(musicListData[curMusicIndex].color[0])
+const ChangeDiskColorDependOnMusicState = (color) => {
+  if (!isMusicPlaying) ChangeDiskColor(color)
 }
 
 /* 첫 로드시, ul 태그내부에 앨범이미지 삽입 */
@@ -123,7 +123,7 @@ $button_prev.addEventListener('click', () => {
   if (--curMusicIndex === -1) curMusicIndex = musicListData.length - 1
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
-  ChangeDiskColorDependOnMusicState()
+  ChangeDiskColorDependOnMusicState(musicListData[curMusicIndex].color[0])
 })
 /* next 버튼을 눌렀을 경우 */
 $button_next.addEventListener('click', () => {
@@ -131,7 +131,7 @@ $button_next.addEventListener('click', () => {
   if (++curMusicIndex === musicListData.length) curMusicIndex = 0
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
-  ChangeDiskColorDependOnMusicState()
+  ChangeDiskColorDependOnMusicState(musicListData[curMusicIndex].color[0])
 })
 /* play 버튼을 눌렀을 경우 */
 $button_play.addEventListener('click', () => {
@@ -146,6 +146,7 @@ $button_stop.addEventListener('click', () => {
   isMusicPlaying = false
   StopDiskRotation()
   SetUpOrDownAnimToTag($div_filter, 'downToUp')
+  ChangeDiskColor(musicListData[curMusicIndex].color[0])
 })
 /* 앨범 이미지를 클릭한 경우 */
 $ul.addEventListener('click', (e) => {
@@ -154,5 +155,5 @@ $ul.addEventListener('click', (e) => {
   curMusicIndex = clickedAlbumIdx
   OnHighlightEffectForAlbumImg(curMusicIndex)
   ChangePageTheme(musicListData[curMusicIndex].color)
-  ChangeDiskColorDependOnMusicState()
+  ChangeDiskColorDependOnMusicState(musicListData[curMusicIndex].color[0])
 })
