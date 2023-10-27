@@ -1,6 +1,6 @@
 const Storage = () => {
-  // data 변수에 { promise 갯수 - 1 } 이상을 적어야 정상적으로 실행된다.
-  let data = 0
+  // data 변수에 { promise 갯수 - 1 } 이상을 적어야 모두 정상적 실행된다.
+  let data = 2
   const DrawOne = () => {
     if (data < 0) return
     return data--
@@ -21,14 +21,34 @@ const GetData = (resolve, reject, promise_id) => {
   }, 700)
 }
 
+const 기초 = () => {
+  const promise1 = new Promise((resolve, reject) => GetData(resolve, reject, 1))
+  const promise2 = new Promise((resolve, reject) => GetData(resolve, reject, 2))
+  const promise3 = new Promise((resolve, reject) => GetData(resolve, reject, 3))
+  // Promise.all => 배열형태로 전달받은 비동기 함수가 모두 정상실행되어야 catch에 걸리지 않는다.
+  const promiseAll = Promise.all([promise1, promise2, promise3])
+
+  promiseAll
+    .then((response) => {
+      const idList = [response[0].id, response[1].id, response[2].id]
+      console.log('비동기 요청 ' + idList[0])
+      console.log('비동기 요청 ' + idList[1])
+      console.log('비동기 요청 ' + idList[2])
+      console.log('정상적으로 실행되었습니다.')
+    })
+    .catch(() => {
+      console.log('결과값을 가지고 오는데 실패하였습니다.')
+    })
+}
+
 const 심화 = () => {
   const promise1 = new Promise((resolve, reject) => GetData(resolve, reject, 1))
   const promise2 = new Promise((resolve, reject) => GetData(resolve, reject, 2))
   const promise3 = new Promise((resolve, reject) => GetData(resolve, reject, 3))
   // Promise.all => 배열형태로 전달받은 비동기 함수가 모두 정상실행되어야 catch에 걸리지 않는다.
-  const promiseAll = Promise.allSettled([promise1, promise2, promise3])
+  const promiseAllSettled = Promise.allSettled([promise1, promise2, promise3])
 
-  promiseAll.then((response) => {
+  promiseAllSettled.then((response) => {
     const statusList = [
       response[0].status,
       response[1].status,
@@ -76,5 +96,5 @@ const 심화 = () => {
     }
   })
 }
-
-심화()
+기초()
+// 심화()
