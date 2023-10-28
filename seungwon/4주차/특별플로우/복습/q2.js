@@ -47,7 +47,7 @@ CRUD 구현하기
 문제5. 조회한 유저를 height별 오름 차순으로 정렬하여 조회하기
 */
 // 1
-function addUser(users) {
+function addUser(user) {
 	const id = users.length + 1;
 	user.id = id;
 	users.push(user);
@@ -62,3 +62,43 @@ function deleteUser(name) {
 }
 
 //3
+const updateUser = (id, updatedUser) => {
+	const index = users.findIndex((user) => user.id === id);
+	if (index !== -1) {
+		users[index] = { ...users[index], ...updatedUser };
+	}
+};
+
+//4
+const printUsers = () => {
+	console.log(users);
+};
+
+//5
+const sortUsers = () => {
+	const sortedUsers = users.slice().sort((a, b) => a.height - b.height);
+	console.log(sortedUsers);
+};
+
+//테스트
+// addUser({
+// 	name: "박지성",
+// 	age: 25,
+// 	height: 175,
+// });
+// console.log(users);
+// console.log("add완료");
+
+// deleteUser("오렌지");
+// console.log(users);
+// console.log(" delete완료");
+
+// updateUser(2, { age: 33 });
+// console.log(users);
+// console.log("update 완료");
+
+// printUsers();
+// console.log("조회완료");
+
+// sortUsers();
+// console.log("정렬완료");
