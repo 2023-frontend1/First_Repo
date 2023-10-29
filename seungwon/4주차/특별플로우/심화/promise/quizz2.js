@@ -40,3 +40,30 @@ console.log("비동기 요청 3")
       결과 값으로는 반드시 "정상적으로 실행되었습니다"가 출력되어야한다
       그러나, 3가지 요청이 모두 실패했을 때는 "결과값을 가지고 오는데 실패하였습니다"가 출력되어야한다.
 */
+function asyncRequest(request, shouldSucceed) {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			if (shouldSucceed) {
+				console.log(request);
+				resolve(request);
+			} else {
+				console.log(request + " 호출 실패");
+				reject(request + " 호출 실패");
+			}
+		}, Math.random() * 2000);
+	});
+}
+
+const requests = [
+	asyncRequest("비동기 요청 1", true),
+	asyncRequest("비동기 요청 2", true),
+	asyncRequest("비동기 요청 3", true),
+];
+
+Promise.all(requests)
+	.then(() => {
+		console.log("정상적으로 실행되었습니다");
+	})
+	.catch(() => {
+		console.log("결과값을 가져오는 데 실패하였습니다");
+	});
