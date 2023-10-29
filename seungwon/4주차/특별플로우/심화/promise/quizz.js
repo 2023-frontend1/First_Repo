@@ -20,3 +20,23 @@
     기초. promise를 사용하여 구현할 것
     심화. pomise의 then catch가 아닌 async await을 사용할 것
 */
+//0.7초 우선 딜레이 되게 하기 타임아웃이 받는 값이 ms니까
+function delay(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+//setTimeout > 일정 시간 기다린 후에 실행 , setInterval > 일정 시간동안 반 복해서 실행
+
+//우선 비동기로 함수 만들어 바로 민사이즈 출력
+async function asyncTest() {
+	console.log("min size");
+
+	// 0.7초 후에 맥시멈 사이즈를 출력
+	//await은 promise가 처리될때까지 대기.
+	await delay(700); // 0.7초 대기
+	console.log("max size"); //대기후 출력
+
+	// 맥시멈 사이즈로 변했을 때 텍스트를 출력
+	console.log("이번주 목표까지 15% 남았습니다");
+}
+
+asyncTest();
