@@ -2,17 +2,27 @@ const musicListData = [
   {
     src: "./assets/img/iu_0.jpg",
     color: ["#0272a4", "#f6a564"],
-    audioSrc: "./audio/IU(아이유)-삐삐(BBIBBI).mp3",
+    audioSrc: "./audio/IU-BBIBBI.mp3",
   },
   {
     src: "./assets/img/iu_1.jpg",
     color: ["#b6bfc8", "#36595b"],
-    audioSrc: "./audio/AutumnMorning(가을 아침).mp3",
+    audioSrc: "./audio/AutumnMorning.mp3",
   },
   {
     src: "./assets/img/iu_2.jpg",
     color: ["#e58e82", "#6f569f"],
-    audioSrc: "./audio/IU(아이유)-eight(에잇)(feat.SUGA).mp3",
+    audioSrc: "./audio/IU-eight(feat.SUGA).mp3",
+  },
+  {
+    src: "./assets/img/iu_3.jpeg",
+    color: ["#B4A2A6", "#5D476A"],
+    audioSrc: "./audio/IU-Celebrity.mp3",
+  },
+  {
+    src: "./assets/img/iu_04.jpeg",
+    color: ["#A0AE99", "#9A93B3"],
+    audioSrc: "./audio/LovePoem.mp3",
   },
 ];
 
@@ -25,6 +35,10 @@ const disk = document.querySelector(".disk");
 const cover = document.querySelector(".filter");
 const source = document.querySelector("#audioSource");
 const audioContainer = document.querySelector("#audioContainer");
+
+let currentPage = 0;
+const imagesPerPage = 5;
+
 let musicSelect;
 let selectId;
 let selectMusicColor;
@@ -39,9 +53,9 @@ const renderAlbumImg = (list) => {
   // 앨범 이미지 클릭 시
   img.addEventListener("click", () => {
     if (musicSelect) {
-      musicSelect.classList.remove("musicSelect");
+      musicSelect.classList.remove("play");
     }
-    img.classList.add("musicSelect");
+    img.classList.add("play");
     musicSelect = img;
     selectId = musicSelect.getAttribute("musicId");
     selectMusicColor = musicListData[parseInt(selectId)].color;
@@ -57,9 +71,9 @@ listBtnGroup[1].addEventListener("click", () => {
   const nextImage = imgUl.querySelector(`[musicId="${nextMusicId}"]`);
 
   if (musicSelect) {
-    musicSelect.classList.remove("musicSelect");
+    musicSelect.classList.remove("play");
   }
-  nextImage.classList.add("musicSelect");
+  nextImage.classList.add("play");
   musicSelect = nextImage;
   selectId = nextMusicId;
   selectMusicColor = musicListData[parseInt(nextMusicId)].color;
@@ -75,9 +89,9 @@ listBtnGroup[0].addEventListener("click", () => {
   const prevImage = imgUl.querySelector(`[musicId="${prevMusicId}"]`);
 
   if (musicSelect) {
-    musicSelect.classList.remove("musicSelect");
+    musicSelect.classList.remove("play");
   }
-  prevImage.classList.add("musicSelect");
+  prevImage.classList.add("play");
   musicSelect = prevImage;
   selectId = prevMusicId;
   selectMusicColor = musicListData[parseInt(prevMusicId)].color;
@@ -124,8 +138,8 @@ for (list of musicListData) {
     혹 본인 재량하에 추가하고 싶은 css와 animation이 있으면 추가해두시면 됩니다.
 
     요구사항
-    
-        (1) 구현영상을 참고하여 구현영상과 같은 효과를 진행해보세요 
+
+        (1) 구현영상을 참고하여 구현영상과 같은 효과를 진행해보세요
         (2) play 버튼 클릭시에는 해당 이미지에 맞는 이미지가 배경화면으로 보이고 disk가 회전되어야합니다 o
         (3) stop 버튼을 누르면 배경화면이 사라지고 disk는 멈추어야합니다. o
         (4) 앨범은 총 3개가 있으며 만약 진행 중 다른 앨범을 선택하고 play를 누르면 다른 앨범이 play 되어야합니다. o
@@ -140,7 +154,7 @@ for (list of musicListData) {
         즉 애니메이션과 css를 구현 영상과 똑같이 하실 필요는 없으며, 이를 위해 html이나 css를 따로 건드셔도 괜찮습니다.
         해당 html과 css, animation은 제가 빠른 시일 내에 급히 작성한 것이기 때문에 이해가 조금 어려울 수 있습니다
 
-        (1) 각 노래에 맞는 앨범 자켓 이미지로 배경이 바뀌어야함 
+        (1) 각 노래에 맞는 앨범 자켓 이미지로 배경이 바뀌어야함
         (2) 각 노래에 맞는 색상으로 disk_inner와 stop 상태의 배경이 바뀌어야함
         (3) start 시에는 disk가 돌아가고 stop 시에는 disk가 멈춰야함
         (4) 선택된 앨범에는 하이라이트 호과가 있어야하며 클릭 및 버튼을 통해 선택이 가능함
