@@ -39,24 +39,31 @@ on() // 이미 시동이 걸려있습니다.
 
 //--------------------------//
 let engineOn = true;
+// true 이면 "엔진이 꺼진상태"
+// false 이면 "엔진이 켜진상태"
+
 const engineOff = 'engine is off'
 
 const on = () => {
-   if(engineOn !== true){
-   console.log('engine is already on')
-   } else{
-        engineOn = false
-        console.log('engine is on')
+   if(engineOn){ // true 라면 (== "엔진이 꺼진상태")
+    engineOn = !engineOn;
+   console.log('engine is on')
+   } else{ // false 라면 (== "엔진이 켜진상태")
+        console.log('engine is already on')
     } 
 }
 
 const off = () =>{
+    engineOn = true;
     console.log(engineOff)
 }
 
-on();
-off()
-on();
+on(); // 엔진을 켜진 상태로 바꾼다.
+on(); // 엔진을 켰는데 또 키라고 하네?
+
+// on(); // 엔진을 켜진 상태로 바꾼다.
+// off(); // 엔진을 꺼라.
+// on(); // 엔진을 켰는데 또 키라고 하네?
 
 
 //-----------------------//
