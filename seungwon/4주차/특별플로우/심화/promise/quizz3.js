@@ -14,29 +14,39 @@ async await을 통해 구현하고자 합니다.
 */
 
 const promise1 = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('비동기1');
-      resolve(1);
-    }, 3000);
-  });
+	new Promise((resolve) => {
+		setTimeout(() => {
+			console.log("비동기1");
+			resolve(1);
+		}, 3000);
+	});
 
 const promise2 = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('비동기2');
-      resolve(2);
-    }, 3000);
-  });
+	new Promise((resolve) => {
+		setTimeout(() => {
+			console.log("비동기2");
+			resolve(2);
+		}, 3000);
+	});
 
 const promise3 = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('비동기3');
-      resolve(3);
-    }, 3000);
-  });
+	new Promise((resolve) => {
+		setTimeout(() => {
+			console.log("비동기3");
+			resolve(3);
+		}, 3000);
+	});
 
-promise1().then((res) => {
-  promise2().then(() => promise3());
-});
+async function playPromise() {
+	try {
+		const pro1 = await promise1();
+		const pro2 = await promise2();
+		const pro3 = await promise3();
+
+		console.log("3개 완료");
+	} catch (error) {
+		console.error("console창에 정보를 불러오는데 실패하였습니다.");
+	}
+}
+
+playPromise();
