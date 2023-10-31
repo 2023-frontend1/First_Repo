@@ -1,18 +1,89 @@
 const musicListData = [
-  {
-    src: './assets/image/iu_0.jpg',
-    color: ['#0272a4', '#f6a564'],
-  },
-  {
-    src: './assets/image/iu_1.jpg',
-    color: ['#b6bfc8', '#36595b'],
-  },
-  {
-    src: './assets/image/iu_2.jpg',
-    color: ['#e58e82', '#6f569f'],
-  },
+	{
+		src: "./assets/img/iu_0.jpg",
+		color: ["#0272a4", "#f6a564"],
+	},
+	{
+		src: "./assets/img/iu_1.jpg",
+		color: ["#b6bfc8", "#36595b"],
+	},
+	{
+		src: "./assets/img/iu_2.jpg",
+		color: ["#e58e82", "#6f569f"],
+	},
 ];
+//선언
+const main = document.querySelector("main");
+const ul = document.querySelector("ul");
+const disk = document.querySelector(".disk");
+const inner = document.querySelector(".disk_inner");
+let currentAlbumIndex = 0;
 
+function createAlbumList() {
+	//img 파일 추가
+	musicListData.forEach((srcImg) => {
+		const img = document.createElement("img");
+		img.src = srcImg.src;
+		ul.append(img);
+	});
+}
+createAlbumList();
+
+function updateAlbumImage() {
+	// 선택된 앨범의 이미지를 배경화면으로 설정
+	const selectedAlbum = musicListData[currentAlbumIndex];
+	const main = document.querySelector("main");
+	main.style.backgroundImage = `url(${selectedAlbum.src})`;
+}
+
+function playMusic() {
+	//회전시작
+	disk.classList.add("active");
+}
+
+function stopMusic() {
+	// 디스크 회전 애니메이션을 멈추고 배경화면 지우기
+	disk.classList.remove("active");
+	main.style.backgroundImage = "";
+	main.style.background =
+		"linear-gradient(120deg, musicListData.color[0],musicListData.color[1]);";
+}
+
+function selectAlbum(index) {
+	// 선택된 앨범을 변경하고 강조 표시
+	currentAlbumIndex = index;
+	const albumImages = document.querySelectorAll(".list_btn_group ul img");
+	albumImages.forEach((image, i) => {
+		if (i === index) {
+			image.classList.add("selected");
+		} else {
+			image.classList.remove("selected");
+		}
+	});
+	updateAlbumImage();
+}
+
+// Play 버튼 클릭 이벤트
+const playButton = document.querySelector(".play_btn_group button:first-child");
+playButton.addEventListener("click", () => {
+	playMusic();
+});
+
+// Stop 버튼 클릭 이벤트
+const stopButton = document.querySelector(".play_btn_group button:last-child");
+stopButton.addEventListener("click", () => {
+	stopMusic();
+});
+
+// 앨범 선택 이벤트
+const albumImages = document.querySelectorAll(".list_btn_group ul img");
+albumImages.forEach((image, index) => {
+	image.addEventListener("click", () => {
+		// console.log(currentAlbumIndex);
+		selectAlbum(index);
+		inner.style.backgroundColor = musicListData[index].color[0];
+	});
+});
 /*
 
 문제1.
