@@ -57,6 +57,7 @@ sort: sorts out a list of items in an array into order
 
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();
+fruit.reverse();
 
 expected output:
 ["Apple", "Banana", "Mango", "Orange"]
