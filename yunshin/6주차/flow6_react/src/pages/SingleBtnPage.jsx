@@ -8,10 +8,10 @@ const SingleBtnPage = () => {
       <CustomButton
         onClick={() => {
           alert('아 왜요?')
-          navigate('/app')
+          navigate(`/12`)
         }}
       >
-        눌러주세요.!
+        1번 버튼
       </CustomButton>
     </>
   )

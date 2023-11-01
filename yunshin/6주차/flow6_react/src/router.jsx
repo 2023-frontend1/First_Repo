@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import App from './App'
+import PrintNumberPage from './pages/PrintNumberPage'
+import PrintQueryParamPage from './pages/PrintQueryParamPage'
 import SingleBtnPage from './pages/SingleBtnPage'
 
 const router = createBrowserRouter([
@@ -8,8 +9,12 @@ const router = createBrowserRouter([
     element: <SingleBtnPage />,
   },
   {
-    path: '/app',
-    element: <App />,
+    path: '/:number',
+    element: <PrintNumberPage />,
+  },
+  {
+    path: '/number',
+    element: <PrintQueryParamPage />,
   },
 ])
 export default router
