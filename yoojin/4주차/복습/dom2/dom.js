@@ -34,7 +34,6 @@ $postDetail.innerHTML = `
 
 
 
-
 const $addComment = document.querySelector('input') //input box/comment box
 
 const $commentBtn = document.getElementById('commentBtn')
@@ -53,13 +52,13 @@ $commentBtn.addEventListener('click', ()=>{
 }) //when 추가 button is clicked run newComment function
 
 
-const newComment = (c) => {
+const newComment = (commentValue) => {
     const $li = document.createElement('li') //li element for comments
     $li.className = 'new_comment'
     
     const $p = document.createElement('p')
     $p.className = 'comment_content'
-    $p.textContent = c
+    $p.textContent = commentValue
     
     const $edit = document.createElement('button')
     $edit.className = 'editBtn' //adding class name to button 
