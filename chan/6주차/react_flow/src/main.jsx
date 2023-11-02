@@ -10,6 +10,7 @@ import NumberPage from "./react_flow_2nd_02/pages/NumberPage";
 import MainPage from "./MainPage";
 import Layout from "./layouts/Layout";
 import Quiz1 from "./react_flow_2nd_01/Quiz1";
+import Quiz4 from "./react_flow_2nd_04/Quiz4";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: ':number',
         element : <NumberPage/>
+      },
+      {
+        path : 'react_2nd_flow_quiz4',
+        element: <Quiz4/>
       }
     ]
   },
