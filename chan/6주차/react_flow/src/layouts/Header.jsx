@@ -16,7 +16,6 @@ const Header = () => {
 
 export default Header;
 const Wrapper = styled.div`
-margin-bottom: 30px;
 ${flexCenter}
 `;
 

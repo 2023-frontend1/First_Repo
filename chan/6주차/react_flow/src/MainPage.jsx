@@ -6,17 +6,35 @@ const MainPage = () => {
   const navi = useNavigate();
   return (
     <>
-      <AlignDiv >
-      <QuizButton>Q1</QuizButton>
-      <QuizButton
-        onClick={() => {
-          navi("/react_2nd_flow_quiz2");
-        }}
-      >
-        Q2
-      </QuizButton>
-      <QuizButton>Q3</QuizButton>
-      <QuizButton>Q4</QuizButton>
+      <AlignDiv>
+        <QuizButton
+          onClick={() => {
+            navi("/react_2nd_flow_quiz1");
+          }}
+        >
+          Q1
+        </QuizButton>
+        <QuizButton
+          onClick={() => {
+            navi("/react_2nd_flow_quiz2");
+          }}
+        >
+          Q2
+        </QuizButton>
+        <QuizButton
+          onClick={() => {
+            navi("/react_2nd_flow_quiz3");
+          }}
+        >
+          Q3
+        </QuizButton>
+        <QuizButton
+          onClick={() => {
+            navi("/react_2nd_flow_quiz4");
+          }}
+        >
+          Q4
+        </QuizButton>
       </AlignDiv>
     </>
   );
@@ -31,11 +49,11 @@ const QuizButton = styled.button`
   border-radius: 30px;
   font-size: larger;
   font-weight: bold;
-  &:hover{
+  &:hover {
     background-color: #104210;
   }
 `;
 const AlignDiv = styled.div`
-  margin: 50px 0;
+  margin: 10px 0;
   ${flexCenter}
-`
+`;

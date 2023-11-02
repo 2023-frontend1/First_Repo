@@ -16,7 +16,6 @@ const Footer = () => {
 export default Footer
 
 const Wrapper = styled.div`
-margin-bottom: 30px;
 ${flexCenter}
 `;
 
