@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
-const P4Wrapper = ({ bgcolor = 'none', children }) => {
-  return <Styled.Wrapper $bgcolor={bgcolor}>{children}</Styled.Wrapper>
+const P4Wrapper = ({ bgcolor = 'none', children, ...rest }) => {
+  return (
+    <Styled.Wrapper $bgcolor={bgcolor} {...rest}>
+      {children}
+    </Styled.Wrapper>
+  )
 }
 
 export default P4Wrapper
