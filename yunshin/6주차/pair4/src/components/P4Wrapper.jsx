@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const P4Wrapper = ({ bgcolor, children }) => {
+const P4Wrapper = ({ bgcolor = 'none', children }) => {
   return <Styled.Wrapper $bgcolor={bgcolor}>{children}</Styled.Wrapper>
 }
 
@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ $bgcolor }) => $bgcolor};
+  padding: 10px;
 `
 const Styled = {
   Wrapper,

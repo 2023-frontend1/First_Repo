@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const P4Container = ({ children, direction, ...rest }) => {
+const P4Container = ({ children, direction = 'row', ...rest }) => {
   return (
     <Container $direction={direction} {...rest}>
       {children}

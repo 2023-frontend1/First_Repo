@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const P4Button = ({ bgcolor, children, ...rest }) => {
+const P4Button = ({ bgcolor = 'black', children, ...rest }) => {
   return (
     <Styled.Button $bgcolor={bgcolor} {...rest}>
       {children}
@@ -19,7 +19,7 @@ const Button = styled.button`
   color: white;
   font-size: large;
 
-  background-color: ${({ $bgcolor }) => $bgcolor ?? 'black'};
+  background-color: ${({ $bgcolor }) => $bgcolor};
   transition: background-color, color 250ms;
   &:hover {
     background-color: white;
