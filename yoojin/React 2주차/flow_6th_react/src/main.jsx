@@ -10,9 +10,7 @@ import Button_page from "./React flow pages/react_flow_page02/Button_page";
 import Number_page from "./React flow pages/react_flow_page02/Number_page";
 import MainPage from "./MainPage";
 import Q_and_A from "./React flow pages/react_flow_page01/Q&A";
-import UseState from "./React flow pages/react_flow_page04/UseState";
-import Example from "./React flow pages/react_flow_page04/Useref";
-import Useref from "./React flow pages/react_flow_page04/Useref";
+import Flow_pg4_main from "./React flow pages/react_flow_page04/Flow_pg4_main";
 
 
 const router = createBrowserRouter([
@@ -32,14 +30,11 @@ const router = createBrowserRouter([
     path: "react_flow_01_qna_page",
     element: <Q_and_A/>
   },
-  // {
-  //   path: "react_flow_04_page",
-  //   element: <UseState />
-  // },
   {
     path: "react_flow_04_page",
-    element: <Useref/>
+    element: <Flow_pg4_main />
   }
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
