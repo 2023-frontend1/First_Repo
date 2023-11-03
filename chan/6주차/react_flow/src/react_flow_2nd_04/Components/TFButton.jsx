@@ -25,9 +25,9 @@ const TFButton = () => {
 export default TFButton;
 
 const CheckButton = styled.button`
-  margin: 0px 20px;
+  margin: 0px 5px;
   background-color: #73f173;
-  width: 200px;
+  width: 150px;
   height: 100px;
   border-radius: 30px;
   font-size: larger;
