@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import P4Button from '../../../components/P4Button.jsx'
-import P4Container from '../../../components/P4Container.jsx'
-import P4Wrapper from '../../../components/P4Wrapper.jsx'
+import P4Button from '../../components/P4Button.jsx'
+import P4Container from '../../components/P4Container.jsx'
+import P4Wrapper from '../../components/P4Wrapper.jsx'
 import Modal from './components/Modal.jsx'
 
 export const Q1_1 = () => {
