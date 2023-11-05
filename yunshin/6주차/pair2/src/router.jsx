@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
-import PrintNumberPage from './pages/PrintNumberPage'
+import ButtonPage from './pages/ButtonPage'
+import PrintPathVariablePage from './pages/PrintPathVariablePage'
 import PrintQueryParamPage from './pages/PrintQueryParamPage'
-import SingleBtnPage from './pages/SingleBtnPage'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <SingleBtnPage />,
+    element: <ButtonPage />,
   },
   {
-    path: '/:number',
-    element: <PrintNumberPage />,
+    path: '/number/:number',
+    element: <PrintPathVariablePage />,
   },
   {
     path: '/number',
