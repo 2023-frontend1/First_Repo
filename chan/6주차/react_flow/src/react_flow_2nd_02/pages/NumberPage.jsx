@@ -1,11 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const NumberPage = () => {
-
-    const {number} = useParams()
-    return(
-        <div>{number}</div>
-    )
+  const urlParams = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const onClickMovePage = () => {
+    searchParams.set("page", "2");
+    setSearchParams(searchParams)
+  }
+  return (
+    <>
+      <div>{urlParams.number}</div>
+      <button onClick={onClickMovePage}>나는 버튼~</button>
+      
+    </>
+  );
 };
 
 export default NumberPage;

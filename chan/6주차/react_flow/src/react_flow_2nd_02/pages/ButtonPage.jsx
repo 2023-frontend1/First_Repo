@@ -10,8 +10,8 @@ const ButtonPage = () => {
     <CustomBtn
       onClick={() => {
         alert("비상비상");
-        navi(`/${120000}`);
-      }}
+        navi(`${120000}`);
+      }}  
     >
       버튼 클릭시 페이지 이동~ 
     </CustomBtn>
@@ -19,7 +19,7 @@ const ButtonPage = () => {
     
     <CustomBtn
       onClick={() => {
-        navi(`/${120000}`);
+        navi(`${120000}`);
       }}
     >
       둘버튼
