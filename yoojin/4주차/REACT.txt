@@ -1,0 +1,23 @@
+React is a JS library for building fast and interactive user interfaces for the web as well as mobile applications
+
+Pros:
+    - uses virtual DOM (a copy of the real DOM) which speeds up the app.
+        
+        [Any changes in the real DOM re-renders the whole DOM at once and that affects the efficiency of your server 
+        loading cause it has to reload the whole page as browser can only read JS, HTML/CSS]
+
+        [Virtual DOM has no direct access or change to the real DOM, that alone makes it extremely fast.]
+
+        [And React only looks at the DOM elements which need to be updated then carry out the update for it 
+        instead of re-rendering all of the elements]
+
+    - can be used to create sophisticated UI for both desktop and mobile apps
+
+    - reusable and useful components fro code maintenance. 
+
+Cons: 
+
+    - majority of the code is written in JSX, meaning HTML & CSS are part of the JS code.
+        [This could be a problem because most other frameworks like to keep HTML separate from the JS code.]
+
+    - React has a huge file size.
