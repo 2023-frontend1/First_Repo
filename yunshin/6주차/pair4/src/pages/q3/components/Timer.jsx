@@ -8,15 +8,19 @@ const Timer = () => {
 
   useEffect(() => {
     start()
-  }, [])
+  }, [start])
 
   return (
-    <P4Container>
+    <P4Container direction="column">
       <h1>Timer</h1>
-      <P4Wrapper>{count}</P4Wrapper>
-      <P4Button onClick={stop}>stop</P4Button>
-      <P4Button onClick={start}>restart</P4Button>
-      <P4Button onClick={reset}>reset</P4Button>
+      <P4Wrapper>
+        <h3>{count}</h3>
+      </P4Wrapper>
+      <P4Container>
+        <P4Button onClick={stop}>stop</P4Button>
+        <P4Button onClick={start}>restart</P4Button>
+        <P4Button onClick={reset}>reset</P4Button>
+      </P4Container>
     </P4Container>
   )
 }
@@ -42,7 +46,7 @@ const useCount = () => {
   const reset = useCallback(() => {
     setCount(0)
     stop()
-  }, [])
+  }, [stop])
 
   return [count, start, stop, reset]
 }

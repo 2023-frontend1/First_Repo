@@ -4,7 +4,7 @@ import P4Container from '../../components/P4Container'
 import P4Wrapper from '../../components/P4Wrapper'
 import Timer from './components/Timer'
 
-const Q3_1 = () => {
+export const Q3_1 = () => {
   const [isVisible, setIsVisible] = useState(false)
   return (
     <P4Wrapper>
@@ -15,12 +15,10 @@ const Q3_1 = () => {
             setIsVisible((prev) => !prev)
           }}
         >
-          보여줄까요?
+          {isVisible ? '끌까요??' : '보여줄까요?'}
         </P4Button>
-        <></>
         {isVisible && <Timer />}
       </P4Container>
     </P4Wrapper>
   )
 }
-export default Q3_1
