@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const Timer = () => {
   const [count, setCount] = useState(0);
@@ -14,24 +14,24 @@ const Timer = () => {
     };
   }, []);
 
-  const stop = () => {
+  const stop = useCallback(() => {
     clearInterval(timer.current);
     timer.current = null;
-  };
+  }, []);
 
-  const restart = () => {
+  const restart = useCallback(() => {
     if (timer.current === null) {
       timer.current = setInterval(() => {
         setCount((prev) => prev + 1);
       }, 1000);
     }
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     clearInterval(timer.current);
     setCount(0);
     timer.current = null;
-  };
+  }, []);
 
   return (
     <>
