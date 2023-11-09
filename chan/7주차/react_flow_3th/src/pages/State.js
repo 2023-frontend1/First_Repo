@@ -1,6 +1,6 @@
-import State1 from "../q/state1";
-import State2 from "../q/state2";
-import State3 from "../q/state3";
+import State1 from "../q/state1"
+import State2 from "../q/state2"
+import State3 from "../q/state3"
 
 function StatesPage() {
   return (
@@ -12,6 +12,6 @@ function StatesPage() {
       <State3 />
       <hr />
     </div>
-  );
+  )
 }
-export default StatesPage;
+export default StatesPage

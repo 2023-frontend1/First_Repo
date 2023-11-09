@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Comment from "./components/comment";
+import { useState, useRef } from "react"
+import styled from "styled-components"
+import Comment from "./components/comment"
 
 function State2() {
   /*  
@@ -61,7 +61,26 @@ function State2() {
         myComment: false,
       },
     ],
-  });
+  })
+  
+  const refNickName = useRef("")
+  const refcontent = useRef("")
+
+  const onClickAddComent = () => {
+    if (refNickName.current.value && refcontent.current.value) {
+      const newPost = { ...post }
+      newPost.Comments.push({
+        User: {
+          nickname: refNickName.current.value,
+        },
+        content: refcontent.current.value,
+        myComment: true,
+      })
+      setPost(newPost)
+      refNickName.current.value = ""
+      refcontent.current.value = ""
+    }
+  }
 
   return (
     <S.Wrapper>
@@ -85,41 +104,39 @@ function State2() {
         <p>
           댓글 수: <span>{post.Comments.length}</span>
         </p>
-        <input placeholder="작성자" />
-        <input placeholder="댓글 내용" />
-        <button>댓글 작성</button>
+        <input ref={refNickName} placeholder="작성자" />
+        <input ref={refcontent} placeholder="댓글 내용" />
+        <button onClick={onClickAddComent}>댓글 작성</button>
       </div>
       <S.CommentList>
-        {/* list */}
-        {/* 예시 데이터 */}
-        <Comment />
+        <Comment {...post} setPost={setPost} />
       </S.CommentList>
     </S.Wrapper>
-  );
+  )
 }
-export default State2;
+export default State2
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const PostBox = styled.div`
   background-color: #999;
   width: 360px;
   padding: 10px;
-`;
+`
 
 const PostTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
-`;
+`
 
 const PostContent = styled.p`
   color: #fff;
-`;
+`
 
 const PostInfo = styled.div`
   width: 360px;
@@ -135,11 +152,11 @@ const PostInfo = styled.div`
   span {
     font-weight: bold;
   }
-`;
+`
 
 const CommentList = styled.ul`
   width: 960px;
-`;
+`
 
 const S = {
   Wrapper,
@@ -148,4 +165,4 @@ const S = {
   PostContent,
   PostInfo,
   CommentList,
-};
+}
