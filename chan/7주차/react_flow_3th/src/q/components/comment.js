@@ -1,13 +1,35 @@
+import { useRef, useState } from "react"
 import styled from "styled-components"
 
 function Comment(post) {
+  const [state, setState] = useState(true)
+  const refNewComment = useRef("")
+
   const onClickDeletComnent = (idx) => {
+    if (!state) return
     const newPost = { ...post }
     newPost.Comments.splice(idx, 1)
-    post.setPost(newPost)
+    const confirm = window.confirm("정말 삭제 하시겠습니까?")
+    if (confirm === true) {
+      post.setPost(newPost)
+    }
   }
 
-  const onClickRetouchComnent = () => {}
+  const onClickFixComnent = () => {
+    setState((prev) => !prev)
+  }
+
+  const onClickFixConfirmComnent = (idx) => {
+    const newPost = { ...post }
+    const fixComment = newPost.Comments.slice(idx, idx + 1)
+    fixComment.content = refNewComment.current.value
+    newPost.Comments[idx].content = fixComment.content
+    const confirm = window.confirm("정말 수정 하시겠습니까?")
+    if (confirm === true) {
+      post.setPost(newPost)
+      setState((prev) => !prev)
+    }
+  }
 
   return (
     <>
@@ -22,13 +44,18 @@ function Comment(post) {
             </p>
             {comment.myComment && (
               <>
-                <button
-                  onClick={() => {
-                    onClickRetouchComnent(idx)
-                  }}
-                >
-                  수정
-                </button>{" "}
+                {state ? (
+                  <button onClick={onClickFixComnent}>수정</button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      onClickFixConfirmComnent(idx)
+                    }}
+                  >
+                    확인
+                  </button>
+                )}
+
                 <button
                   onClick={() => {
                     onClickDeletComnent(idx)
@@ -36,6 +63,7 @@ function Comment(post) {
                 >
                   삭제
                 </button>
+                {!state && <input ref={refNewComment} defaultValue=" "></input>}
               </>
             )}
           </S.CommentItem>
