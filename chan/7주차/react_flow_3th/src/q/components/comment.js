@@ -2,21 +2,29 @@ import { useRef, useState } from "react"
 import styled from "styled-components"
 
 function Comment(post) {
-  const [state, setState] = useState(true)
+  const [isFixable, setIsFixable] = useState(Array(post.length).fill(false))
   const refNewComment = useRef("")
 
+  const OnAppearInput = (idx) => {
+    const copy = [...isFixable]
+    copy[idx] = true
+    setIsFixable(copy)
+  }
+
+  const OnDisAppearInput = (idx) => {
+    const copy = [...isFixable]
+    copy[idx] = false
+    setIsFixable(copy)
+  }
+
   const onClickDeletComnent = (idx) => {
-    if (!state) return
+    if (isFixable[idx]) return
     const newPost = { ...post }
     newPost.Comments.splice(idx, 1)
     const confirm = window.confirm("정말 삭제 하시겠습니까?")
     if (confirm === true) {
       post.setPost(newPost)
     }
-  }
-
-  const onClickFixComnent = () => {
-    setState((prev) => !prev)
   }
 
   const onClickFixConfirmComnent = (idx) => {
@@ -26,8 +34,8 @@ function Comment(post) {
     newPost.Comments[idx].content = fixComment.content
     const confirm = window.confirm("정말 수정 하시겠습니까?")
     if (confirm === true) {
+      OnDisAppearInput(idx)
       post.setPost(newPost)
-      setState((prev) => !prev)
     }
   }
 
@@ -44,18 +52,7 @@ function Comment(post) {
             </p>
             {comment.myComment && (
               <>
-                {state ? (
-                  <button onClick={onClickFixComnent}>수정</button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      onClickFixConfirmComnent(idx)
-                    }}
-                  >
-                    확인
-                  </button>
-                )}
-
+                <button onClick={() => OnAppearInput(idx)}>수정</button>
                 <button
                   onClick={() => {
                     onClickDeletComnent(idx)
@@ -63,7 +60,14 @@ function Comment(post) {
                 >
                   삭제
                 </button>
-                {!state && <input ref={refNewComment} defaultValue=" "></input>}
+                {isFixable[idx] && (
+                  <>
+                    <button onClick={() => onClickFixConfirmComnent(idx)}>
+                      확인
+                    </button>
+                    <input ref={refNewComment} defaultValue=" "></input>
+                  </>
+                )}
               </>
             )}
           </S.CommentItem>

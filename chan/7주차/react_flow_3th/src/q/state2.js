@@ -82,6 +82,7 @@ function State2() {
     }
   }
 
+
   return (
     <S.Wrapper>
       <h1>문제2</h1>
