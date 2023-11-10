@@ -1,25 +1,25 @@
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import StatesPage from "./pages/State";
-import DetailPage from "./pages/Detail";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import './App.css'
+import DetailPage from './pages/Detail'
+import StatesPage from './pages/State'
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <StatesPage />,
     },
     {
-      path: "/detail/:productNumber",
+      path: '/detail/:productNumber',
       element: <DetailPage />,
     },
-  ]);
+  ])
 
   return (
     <div className="App">
       <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
