@@ -1,11 +1,14 @@
-import { CusContainer, CusDivider } from '../../../components'
-import UseEffect from '../components/Effect'
+import { useNavigate } from 'react-router-dom'
+import { CusButton, CusContainer } from '../../../components'
 const O29MainPage = () => {
+  const navigate = useNavigate()
+
+  const goToHooksPractice = () => {
+    navigate('./hooks-practice')
+  }
   return (
-    <CusContainer>
-      <h1>useEffect 실습</h1>
-      <UseEffect />
-      <CusDivider />
+    <CusContainer width="100%" height="100vh">
+      <CusButton onClick={goToHooksPractice}>HooksPractice</CusButton>
     </CusContainer>
   )
 }

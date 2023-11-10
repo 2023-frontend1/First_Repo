@@ -12,7 +12,7 @@
  */
 
 import { useEffect, useState } from 'react'
-import { CusButton } from '../../../../components'
+import { CusButton } from '../../../../../components'
 
 const UseEffect2 = () => {
   /** 🔥 [1] */

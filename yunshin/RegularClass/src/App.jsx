@@ -1,10 +1,21 @@
+import { useNavigate } from 'react-router-dom'
 import { CusButton, CusContainer, CusDivider } from './components'
 
 const App = () => {
+  const navigate = useNavigate()
+  const goToClassPractice = (endPoint) => {
+    navigate(endPoint)
+  }
   return (
-    <CusContainer height="100vh" bgColor="pink" direction="column">
+    <CusContainer height="100vh" direction="column">
       <CusDivider margin="10px" />
-      <CusButton>11월 11일 자료</CusButton>
+      <CusButton
+        onClick={() => {
+          goToClassPractice('/Oct-29')
+        }}
+      >
+        11월 11일 자료
+      </CusButton>
       <CusDivider margin="10px" />
     </CusContainer>
   )

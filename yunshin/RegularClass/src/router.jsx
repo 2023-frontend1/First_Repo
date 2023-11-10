@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
-import O29MainPage from './classes/oct29th/pages/O29MainPage'
+import { HooksPracticePage, O29MainPage } from './classes/oct29th/pages'
 
 const router = createBrowserRouter([
   {
@@ -8,15 +8,15 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/Oct',
+    path: '/Oct-29',
     children: [
       {
-        path: '/Oct/29',
+        path: '',
         element: <O29MainPage />,
       },
       {
-        path: '/Oct/28',
-        element: <O29MainPage />,
+        path: 'hooks-practice',
+        element: <HooksPracticePage />,
       },
     ],
   },

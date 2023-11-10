@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CusButton, CusContainer } from '../../../../components'
+import { CusButton, CusContainer } from '../../../../../components'
 import Modal from '../Modal'
 
 const UseEffect = () => {
